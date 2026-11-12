@@ -1,6 +1,6 @@
 # Build log
 
-How a box for disposable cutlery went from a chat to a six-piece print in daily use, and what that taught. Design dates come from the project files' timestamps (US Pacific time); later dates come from the photos. The close-up photos of test pieces were taken afterwards, of the leftover prints, and are placed where those prints belong in the story.
+How a box for disposable cutlery went from a chat to a six-piece print in daily use, and what that taught. Design dates come from the project files' timestamps (US Pacific time; the design notes in the archive are dated in UTC, so some say a day later). Later dates come from the photos. The close-up photos of test pieces were taken afterwards, of the leftover prints, and are placed where those prints belong in the story.
 
 [← back to README](../README.md)
 
@@ -10,9 +10,9 @@ How a box for disposable cutlery went from a chat to a six-piece print in daily 
 
 ## Why
 
-Disposable cutlery needed one place on the counter, with knives, forks and spoons kept apart. My son has a small 3D printer, so the box could be printed rather than bought.
+We use disposable cutlery from time to time, and it never had a good home. It comes in cardboard boxes that fall apart, or thin plastic boxes that crack into sharp pieces, and neither can be washed. Over the years I looked on Amazon and found organizers for real cutlery, but they hold too few pieces, don't lock or open too easily, and aren't made for a pile of disposable cutlery. My own fixes, a box with dividers made from plastic offcuts and tape, were flimsy and not very hygienic.
 
-It was also an experiment. In June 2026 I wanted to see how far plain Claude, used in ordinary chat with no add-ons, could take a physical design from idea to printed part. I used no text-to-CAD tools, no CAD plugins and no special workflow. At the time I didn't know that text-to-CAD tools existed.
+I always thought this should exist, but never had the time to design it in CAD. My son has a small 3D printer, and in June 2026 I wanted to see how fast I could design and iterate on one with plain Claude, used in ordinary chat: no text-to-CAD tools, no CAD plugins and no special workflow. At the time I didn't know text-to-CAD tools existed. It turned out to be fast, fun, and it solved the problem.
 
 ## The plan (June 19)
 
@@ -42,6 +42,8 @@ Rather than print a whole piece, the first tests were short slices of a piece: e
 
 **Hollow corners.** The corners where the walls meet came out empty, even though they looked solid on screen. The script built each wall as a separate solid, overlapping at the corners, and left it to the slicer to merge them. This slicer treats a region covered twice as *outside*, so every overlap printed as a hole. The fix was walls that meet edge to edge instead of overlapping.
 
+![Two ways to build a corner: on screen they look the same, but only one prints solid](img/hollow-corner-explained.png)
+
 **Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above.
 
 > **Lesson:** "looks solid on screen" is not "slices solid." And measure the real objects before sizing anything.
@@ -55,23 +57,37 @@ The Python script couldn't keep the rim's chamfer (the small bevel along the top
 
 ![Dovetail keys on two of the pieces](img/2026-06-21_dovetail-keys.png)
 
-**A defect every check missed.** Two pieces showed a ghost face that another program turned into a solid block halfway up the wall. All the standard mesh checks passed. The cause was a cut plane lying exactly on an existing wall face, which leaves behind a sheet of zero thickness. Moving those cut planes 0.02 mm into open space fixed it.
+**A defect every check missed.** Two pieces showed a ghost face that Tinkercad turned into a solid block halfway up the wall. All the standard mesh checks passed. The cause was a cut plane lying exactly on an existing wall face, which leaves behind a sheet of zero thickness. Moving those cut planes 0.02 mm into open space fixed it.
 
 ![The zero-thickness face before and after the fix](img/2026-06-21_zero-thickness-flap.png)
+*Left: the paper-thin face, in red. Right: gone after moving the cut 0.02 mm.*
 
-**Straight edges on top.** The trapezoid of each dovetail showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it prints without support.
+**Straight edges on top.** In the first versions the dovetail ran all the way up, so its trapezoid showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it prints without support.
+
+![Close-up of the same rim seam in four versions: the dovetail outline shows on top in the first, then a single straight line](img/renders/seam-top-progression.png)
+*The same spot on the rim, where two pieces meet over a divider. In the Python version the dovetail's outline shows on top. From v4 the cap hides it under one straight line. In the later versions with lid features (v24 shown) the divider is also lowered, as described below.*
 
 ![Cross-section of the capped joint](img/2026-06-21_hidden-cap-section.png)
 
-The overall shape barely changed from here to the final version; nearly all the later work was at the joints:
+The overall shape barely changed from here to the final version; nearly all the later work was at the joints and the rim. (All renders here are plain grey, as the model looked while designing. Colour only arrived with the filament.)
 
 ![Renders of the saved versions from June 20 to June 24](img/renders/progression.png)
 
 ## Trial pieces (June 22)
 
-The top of the box gained features for a flat clear lid: a hinge groove along one long wall, a lipped support rail, two light clips, and a finger notch to lift it.
+Versions 5 to 23 added features for a flat clear lid, all cut into the top of the walls. No lid has been made yet (see [Living with it](#living-with-it-july-onward)), so these are designed but untested:
 
-![The finger notch in the clip wall](../photos/process/IMG_8119.jpg)
+- **A support rail** along three inside walls for the lid to rest on, so the lid sits 2 mm below the rim. Its underside slopes at 45° so it prints without support.
+- **A hinge groove** along one long wall: a half-round channel the lid's rounded edge sits in, set back behind a short slot so the rim covers it and should hold the lid when it's raised. A half circle alone wouldn't let the lid swing, so above it the groove opens up at an angle. That angle is meant to let the lid tilt up on its hinge and also lift right out, so the box can be left open on a table for people to help themselves.
+- **Two light clips** on the opposite wall, with a lip of only 0.3 mm, so the lid should click shut but open easily.
+- **A finger notch** between the clips (added in v20), where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge.
+
+![The hinge wall in four versions: a plain wall, then the groove with its round channel and angled opening](img/renders/hinge-wall-progression.png)
+*The hinge wall, seen at the edge where the piece was cut. From v24 the groove shows: the round channel the lid edge sits in, and the angled opening above it.*
+
+| The finger notch and the two clips, rendered | The same notch, printed |
+|---|---|
+| ![Render of the finger notch with a clip on each side and the rail below](img/renders/notch-and-clips_v25.png) | ![The finger notch in the printed clip wall](../photos/process/IMG_8119.jpg) |
 
 Then came the first trial pieces, with four problems. The annotations are from that day.
 
@@ -88,9 +104,9 @@ Then came the first trial pieces, with four problems. The annotations are from t
 | **Support stuck in a base joint** | **Dangling tab at a seam corner** |
 | ![Support residue along a base joint, circled](img/2026-06-22_trial-lap-support.jpg) | ![Thin tab at the corner where two seams cross, circled](img/2026-06-22_trial-corner-tab.jpg) |
 
-**Warping.** Some pieces also lifted at the corners, the bottom curling up off the bed:
+**Warping.** Some pieces also lifted at the corners while printing, so the bottom edge no longer lies flat:
 
-![A test piece with a corner curled upward](../photos/process/IMG_8082.jpg)
+![A test piece held edge-on: its bottom edge curls up at the corner instead of lying flat](../photos/process/IMG_8082.jpg)
 
 ## Fitting the dovetails (June 23–24)
 
@@ -108,10 +124,14 @@ Then two full-height tongues with the real top cap checked the fit over the whol
 
 ![Two full-height test tongues](../photos/process/IMG_8099.jpg)
 
-The final model (v25, June 24) uses 0.15 mm per side.
+The final model (v25, June 24) uses 0.15 mm per side. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
+
+The same round of prints showed that every flat base joint still trapped support material, so v25 also turned all of them into 45° wedges:
+
+![The base joint in four versions: none, a flat shelf, then a 45-degree wedge](img/renders/base-joint-progression.png)
+*Two pieces pulled apart at the base. The Python version had no overlap at the base; v4 and v24 had a flat shelf that needed support under it; v25 has a 45° wedge that prints on its own.*
 
 ![The final model's six pieces, pulled apart](img/renders/2026-06-24_v25-six-pieces.png)
- Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
 
 > **Lesson:** the printer's precision, and its repeatability from one print to the next, is a design input. A fit that works on one print may not on the next, even at identical settings. Test on cheap coupons, change one side of a joint at a time, and plan for some hand fitting.
 
@@ -138,6 +158,8 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 **Re-assigning the compartments.** With stacking, compartment width matters differently. The widest compartments hold the most, so the types moved: spoons, which we use least, went into the narrowest compartment (designed for knives). Forks are in the middle and knives in the widest.
 
 ![The box in use, with cutlery nested in stacks](../photos/finished-loaded.jpg)
+
+**A second one.** My brother had been looking for the same thing, so I printed one for him too.
 
 Open question: forks are what we use most, so they may belong in the widest compartment, with knives in the middle. Whether that's better also depends on how easy each type is to grab out of its compartment.
 
