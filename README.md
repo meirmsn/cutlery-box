@@ -4,7 +4,7 @@
 
 A three-compartment box for disposable knives, forks and spoons, designed in OpenSCAD with Claude and printed in six pieces on a small hobby printer.
 
-The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026.
+Disposable cutlery usually lives in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, none of them can be washed, and the organizers I found for real cutlery don't hold enough. The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
 
 ![The finished box on the counter, loaded with spoons, forks and knives](photos/finished-loaded.jpg)
 
@@ -35,14 +35,15 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **2026-06-19:** First model: three compartments, split into a 3 × 2 grid of pieces to fit the printer.
 - **2026-06-20:** First test prints. Corners came out hollow and the compartments were too narrow. Re-measured and resized.
 - **2026-06-21:** Rebuilt in OpenSCAD, which can cut solids cleanly. Joints hidden under a capped, chamfered rim.
-- **2026-06-22:** Lid features added (hinge groove, lipped rail, clips, finger notch). Trial pieces showed elephant's foot, warped corners, flimsy sockets and trapped support.
+- **2026-06-22:** Lid features added (hinge groove, support rail, clips, finger notch). Trial pieces showed elephant's foot, warped corners, flimsy sockets and trapped support.
 - **2026-06-23:** Dovetail fit tuned with graduated test coupons and full-height test tongues. All base joints changed to 45° wedges.
 - **2026-06-24:** Final model (v25). Six STLs exported.
 - **By 2026-06-30:** All six pieces printed, high spots Dremelled down, box assembled and glued.
 - **2026-07-05:** In daily use, with the cutlery nested in stacks instead of columns.
 
 ![Renders of the model on June 20, 21, 22 and 24: the overall shape barely changes](docs/img/renders/progression.png)
-*Six days of versions, rendered from the saved files. The shape barely changed; the iteration happened at the joints, a fraction of a millimetre at a time.*
+![Close-up of one rim seam in the same four versions](docs/img/renders/seam-top-progression.png)
+*Six days of versions, rendered from the saved files. The overall shape barely changed; the work happened at the joints and the rim. Close up (second row), the dovetail's outline on top of the rim gives way to a cap and one straight seam line.*
 
 | Joint test coupons, one to four dots | A longer knife from another brand: it touches both end walls |
 |---|---|
