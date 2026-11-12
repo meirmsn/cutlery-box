@@ -1,18 +1,21 @@
 #!/usr/bin/env python3
-"""Flat-shaded STL renderer used for the images in docs/img/renders/.
+"""Z-buffer STL renderer used for the images in docs/img/renders/.
 
-Needs numpy, matplotlib and Pillow. Examples (from the repo root):
-  python3 tools/render_stl.py box.png "" stl/                      # assembled box
-  python3 tools/render_stl.py parts.png "" stl/ --explode 35       # six pieces pulled apart
-  python3 tools/render_stl.py pair.png "" stl/body_knife_A.stl stl/body_knife_B.stl --offsetB 25 --elev 38 --azim -50
-The second argument (title) is unused and kept for compatibility.
+Orthographic view, flat shading, depth-based edge lines, one neutral colour by
+default (the parts' print colours were never part of the design).
+Needs numpy and Pillow.
+
+  python3 tools/render_stl.py out.png stl/                                 # whole box
+  python3 tools/render_stl.py out.png stl/ --explode 30                    # pieces pulled apart
+  python3 tools/render_stl.py out.png stl/ --center 104 3 50 --width 40    # close-up of one spot
+  python3 tools/render_stl.py out.png a.stl b.stl --offsetB 104            # parts not in assembled position
+
+--elev / --azim set the view direction in degrees (azimuth measured from +x).
 """
-import sys, struct, glob, os, argparse
+import argparse, glob, os, struct
 import numpy as np
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+from PIL import Image, ImageFilter
+
 
 def load(f):
     d = open(f, 'rb').read()
@@ -23,58 +26,117 @@ def load(f):
     a = np.frombuffer(d[84:84 + n * 50], dtype=np.dtype([('n', '<3f4'), ('v', '<9f4'), ('a', '<u2')]))
     return a['v'].reshape(-1, 3, 3).astype(float)
 
-COL = {'knife_A': '#4e79a7', 'knife_B': '#76b7b2', 'fork_A': '#f28e2b', 'fork_B': '#edc948',
-       'spoon_A': '#e15759', 'spoon_B': '#b07aa1'}
 
-ap = argparse.ArgumentParser()
-ap.add_argument('out'); ap.add_argument('title')
-ap.add_argument('files', nargs='+')
-ap.add_argument('--explode', type=float, default=0)
-ap.add_argument('--elev', type=float, default=32); ap.add_argument('--azim', type=float, default=-128)
-ap.add_argument('--mono', action='store_true')
-ap.add_argument('--zoom', type=float, nargs=6, default=None, help='x0 x1 y0 y1 z0 z1 crop')
-ap.add_argument('--size', type=float, nargs=2, default=[12, 8])
-ap.add_argument('--offsetB', type=float, default=0, help='shift *_B parts in +x (for STLs not in assembled coords)')
-a = ap.parse_args()
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('out')
+    ap.add_argument('files', nargs='+')
+    ap.add_argument('--elev', type=float, default=35)
+    ap.add_argument('--azim', type=float, default=-125)
+    ap.add_argument('--center', type=float, nargs=3)
+    ap.add_argument('--width', type=float, help='visible width in mm (close-up)')
+    ap.add_argument('--px', type=int, default=1400, help='output width in pixels')
+    ap.add_argument('--aspect', type=float, default=0.75, help='height / width for close-ups')
+    ap.add_argument('--explode', type=float, default=0, help='percent to push pieces apart')
+    ap.add_argument('--offsetB', type=float, default=0, help='shift *_B parts in +x')
+    ap.add_argument('--color', default='#c9ccd1')
+    ap.add_argument('--bg', default='#ffffff')
+    a = ap.parse_args()
 
-fs = []
-for p in a.files:
-    fs += sorted(glob.glob(os.path.join(p, 'body_*.stl'))) if os.path.isdir(p) else [p]
-
-fig = plt.figure(figsize=a.size, dpi=220)
-ax = fig.add_subplot(111, projection='3d')
-light = np.array([0.4, -0.6, 0.9]); light /= np.linalg.norm(light)
-allp = []
-for f in fs:
-    key = os.path.basename(f)[5:-4] if os.path.basename(f).startswith('body_') else 'x'
-    t = load(f)
-    if a.offsetB and key.endswith('_B'): t = t + np.array([a.offsetB, 0, 0])
+    fs = []
+    for p in a.files:
+        fs += sorted(glob.glob(os.path.join(p, 'body_*.stl'))) if os.path.isdir(p) else [p]
+    tris = []
+    for f in fs:
+        t = load(f)
+        if a.offsetB and os.path.basename(f).endswith('_B.stl'):
+            t = t + [a.offsetB, 0, 0]
+        tris.append(t)
     if a.explode:
-        c = t.reshape(-1, 3).mean(0); c[2] = 0
-        cx = np.array([104.0, 151.5, 0])
-        t = t + (c - cx) * a.explode / 100.0
-    if a.zoom:
-        x0, x1, y0, y1, z0, z1 = a.zoom
-        cen = t.mean(1)
-        keep = (cen[:, 0] > x0) & (cen[:, 0] < x1) & (cen[:, 1] > y0) & (cen[:, 1] < y1) & (cen[:, 2] > z0) & (cen[:, 2] < z1)
-        t = t[keep]
-        if not len(t): continue
-    n = np.cross(t[:, 1] - t[:, 0], t[:, 2] - t[:, 0])
-    n /= (np.linalg.norm(n, axis=1, keepdims=True) + 1e-12)
-    shade = 0.45 + 0.55 * np.abs(n @ light)
-    base = np.array(matplotlib.colors.to_rgb('#9aa5b1' if a.mono else COL.get(key, '#9aa5b1')))
-    cols = np.clip(base[None, :] * shade[:, None], 0, 1)
-    pc = Poly3DCollection(t, facecolors=cols, edgecolors=cols, linewidths=0.3)
-    ax.add_collection3d(pc)
-    allp.append(t.reshape(-1, 3))
-P = np.vstack(allp); mn, mx = P.min(0), P.max(0)
-ax.set_xlim(mn[0], mx[0]); ax.set_ylim(mn[1], mx[1]); ax.set_zlim(mn[2], mx[2])
-ax.set_box_aspect(tuple(mx - mn), zoom=1.0)
-ax.view_init(elev=a.elev, azim=a.azim)
-ax.set_axis_off()
-plt.subplots_adjust(0, 0, 1, 1)
-fig.savefig(a.out, facecolor='white')
-from PIL import Image, ImageChops
-im = Image.open(a.out).convert('RGB'); b = ImageChops.difference(im, Image.new('RGB', im.size, 'white')).getbbox()
-im.crop((max(b[0]-40,0), max(b[1]-40,0), min(b[2]+40,im.width), min(b[3]+40,im.height))).save(a.out)
-print('wrote', a.out)
+        allc = np.vstack([t.reshape(-1, 3) for t in tris])
+        mid = (allc.min(0) + allc.max(0)) / 2; mid[2] = 0
+        out = []
+        for t in tris:
+            c = t.reshape(-1, 3).mean(0); c[2] = 0
+            out.append(t + (c - mid) * a.explode / 100)
+        tris = out
+    T = np.vstack(tris)
+
+    # camera basis
+    el, az = np.radians(a.elev), np.radians(a.azim)
+    view = -np.array([np.cos(el) * np.cos(az), np.cos(el) * np.sin(az), np.sin(el)])  # direction camera looks
+    right = np.cross(view, [0, 0, 1]); right /= np.linalg.norm(right)
+    up = np.cross(right, view)
+    P = T.reshape(-1, 3)
+    if a.center is not None:
+        c = np.array(a.center); w = a.width; h = w * a.aspect
+    else:
+        u = P @ right; v = P @ up
+        c = None
+        umin, umax, vmin, vmax = u.min(), u.max(), v.min(), v.max()
+        pad = 0.04 * (umax - umin)
+        w = umax - umin + 2 * pad; h = vmax - vmin + 2 * pad
+        cu, cv = (umin + umax) / 2, (vmin + vmax) / 2
+    SS = 2
+    W = a.px * SS; H = int(round(W * h / w))
+    if c is not None:
+        cu, cv = c @ right, c @ up
+    sx = W / w
+    U = (T @ right - cu) * sx + W / 2
+    V = -(T @ up - cv) * sx + H / 2
+    D = T @ view  # larger = farther
+    n = np.cross(T[:, 1] - T[:, 0], T[:, 2] - T[:, 0])
+    n /= np.linalg.norm(n, axis=1, keepdims=True) + 1e-12
+    facing = n @ view
+    n[facing > 0] *= -1  # make all normals face the camera (meshes may have mixed winding)
+    L1 = np.array([0.35, -0.55, 0.75]); L1 /= np.linalg.norm(L1)
+    L2 = -view
+    shade = 0.30 + 0.45 * np.clip(n @ L1, 0, 1) + 0.30 * np.clip(n @ L2, 0, 1)
+
+    zbuf = np.full((H, W), np.inf); ibuf = np.full((H, W), -1, int)
+    for i in range(len(T)):
+        x, y, z = U[i], V[i], D[i]
+        x0, x1 = int(max(np.floor(x.min()), 0)), int(min(np.ceil(x.max()), W - 1))
+        y0, y1 = int(max(np.floor(y.min()), 0)), int(min(np.ceil(y.max()), H - 1))
+        if x0 > x1 or y0 > y1:
+            continue
+        xs, ys = np.meshgrid(np.arange(x0, x1 + 1) + 0.5, np.arange(y0, y1 + 1) + 0.5)
+        den = (y[1] - y[2]) * (x[0] - x[2]) + (x[2] - x[1]) * (y[0] - y[2])
+        if abs(den) < 1e-9:
+            continue
+        w0 = ((y[1] - y[2]) * (xs - x[2]) + (x[2] - x[1]) * (ys - y[2])) / den
+        w1 = ((y[2] - y[0]) * (xs - x[2]) + (x[0] - x[2]) * (ys - y[2])) / den
+        w2 = 1 - w0 - w1
+        m = (w0 >= -1e-6) & (w1 >= -1e-6) & (w2 >= -1e-6)
+        if not m.any():
+            continue
+        zz = w0 * z[0] + w1 * z[1] + w2 * z[2]
+        sub = zbuf[y0:y1 + 1, x0:x1 + 1]
+        upd = m & (zz < sub - 1e-7)
+        sub[upd] = zz[upd]
+        ibuf[y0:y1 + 1, x0:x1 + 1][upd] = i
+
+    base = np.array([int(a.color[k:k + 2], 16) for k in (1, 3, 5)]) / 255
+    bg = np.array([int(a.bg[k:k + 2], 16) for k in (1, 3, 5)]) / 255
+    img = np.tile(bg, (H, W, 1))
+    hit = ibuf >= 0
+    img[hit] = np.clip(base[None, :] * shade[ibuf[hit]][:, None] * 1.15, 0, 1)
+    # edge lines: depth jumps and crease between differently-oriented faces
+    nmap = np.zeros((H, W, 3)); nmap[hit] = n[ibuf[hit]]
+    zf = np.where(hit, zbuf, zbuf[hit].max() + 50 if hit.any() else 0)
+    edge = np.zeros((H, W), bool)
+    tol = 0.6 * (w / 400 if a.center is not None else 1.0)
+    for dy, dx in ((0, 1), (1, 0)):
+        zb = np.roll(zf, (-dy, -dx), (0, 1)); nb = np.roll(nmap, (-dy, -dx), (0, 1))
+        hb = np.roll(hit, (-dy, -dx), (0, 1))
+        e = (hit != hb) | (np.abs(zf - zb) > tol) | (((nmap * nb).sum(2) < 0.95) & hit & hb)
+        edge |= e
+    edge[-1, :] = edge[:, -1] = False
+    img[edge] = img[edge] * 0.35
+    im = Image.fromarray((img * 255).astype(np.uint8)).resize((a.px, int(round(a.px * H / W))), Image.LANCZOS)
+    im.save(a.out, optimize=True)
+    print('wrote', a.out, im.size, len(T), 'triangles')
+
+
+if __name__ == '__main__':
+    main()
