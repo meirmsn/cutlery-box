@@ -4,7 +4,7 @@ How a box for disposable cutlery went from a chat to a six-piece print in daily 
 
 [← back to README](../README.md)
 
-**Contents:** [Why](#why) · [The plan](#the-plan-june-19) · [First test prints](#first-test-prints-june-20) · [Rebuilding in OpenSCAD](#rebuilding-in-openscad-june-21) · [Trial pieces](#trial-pieces-june-22) · [Fitting the dovetails](#fitting-the-dovetails-june-2324) · [Finishing](#finishing-dremel-and-glue-late-june) · [Living with it](#living-with-it-july-onward) · [What I learned](#what-i-learned) · [Next version](#next-version)
+**Contents:** [Why](#why) · [The plan](#the-plan-june-19) · [First test prints](#first-test-prints-june-20) · [Rebuilding in OpenSCAD](#rebuilding-in-openscad-june-21) · [Trial pieces](#trial-pieces-june-22) · [Fitting the dovetails](#fitting-the-dovetails-june-2324) · [Printing](#printing-the-pieces-late-june) · [Finishing](#finishing-dremel-and-glue-late-june) · [Living with it](#living-with-it-july-onward) · [What I learned](#what-i-learned) · [Next version](#next-version)
 
 ---
 
@@ -16,7 +16,9 @@ I always thought this should exist, but never had the time to design it in CAD. 
 
 ## The plan (June 19)
 
-**The constraint that shaped everything:** the printer (an AOSEED) builds at most 120 × 120 × 120 mm. Disposable cutlery is about 190 mm long, and a box for three types side by side is about 300 mm wide. It can't print in one piece in either direction.
+**The constraint that shaped everything:** the printer, my son's AOSEED X-MAKER JOY AI+, builds at most 120 × 120 × 120 mm. Disposable cutlery is about 190 mm long, and a box for three types side by side is about 300 mm wide. It can't print in one piece in either direction.
+
+![The X-MAKER JOY AI+ printer, door open, with its build plate](../photos/printer.jpg)
 
 So the box is cut into a grid: three compartments across, two halves (A and B) along the length, six pieces in all, each small enough for the printer. Neighbouring compartments share one wall to save space, and there are no dividers inside a compartment.
 
@@ -80,10 +82,16 @@ Versions 5 to 23 added features for a flat clear lid, all cut into the top of th
 - **A support rail** along three inside walls for the lid to rest on, so the lid sits 2 mm below the rim. Its underside slopes at 45° so it prints without support.
 - **A hinge groove** along one long wall: a half-round channel the lid's rounded edge sits in, set back behind a short slot so the rim covers it and should hold the lid when it's raised. A half circle alone wouldn't let the lid swing, so above it the groove opens up at an angle. That angle is meant to let the lid tilt up on its hinge and also lift right out, so the box can be left open on a table for people to help themselves.
 - **Two light clips** on the opposite wall, with a lip of only 0.3 mm, so the lid should click shut but open easily.
-- **A finger notch** between the clips (added in v20), where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge.
+- **A finger notch** between the clips, where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge. Until v20 there was one clip and a small finger scallop instead.
 
 ![The hinge wall in four versions: a plain wall, then the groove with its round channel and angled opening](img/renders/hinge-wall-progression.png)
-*The hinge wall, seen at the edge where the piece was cut. From v24 the groove shows: the round channel the lid edge sits in, and the angled opening above it.*
+*The hinge wall, seen at the edge where the piece was cut, in the final shape (v24 and v25): the round channel the lid edge sits in, and the angled opening above it.*
+
+![The hinge groove in six versions from June 21 to 22, seen at the cut edge](img/renders/hinge-groove-progression.png)
+*How the groove got there, the same wall in OpenSCAD renders. v4 has no groove. v5 cuts a first short groove and v6 makes it one round channel along the whole wall, open at the rim. v8 drops it 2 mm so the rim covers it and should hold the lid's edge when the lid is raised. v9 sets it back 2 mm behind a slot so that cover actually holds, and v10 opens it above with one straight ramp so the lid can swing up without catching.*
+
+![The finger notch and clips in four versions from June 22](img/renders/notch-progression.png)
+*The clip wall, seen from inside. v19 still has the first design, a small finger scallop below the rail. v20 replaces it with a notch cut through the rim between two clips, v21 arches the notch, and v22 cuts the rail away under it.*
 
 | The finger notch and the two clips, rendered | The same notch, printed |
 |---|---|
@@ -135,11 +143,19 @@ The same round of prints showed that every flat base joint still trapped support
 
 > **Lesson:** the printer's precision, and its repeatability from one print to the next, is a design input. A fit that works on one print may not on the next, even at identical settings. Test on cheap coupons, change one side of a joint at a time, and plan for some hand fitting.
 
+## Printing the pieces (late June)
+
+All six pieces were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the printer's fine setting, 0.12 mm layers, so the rim chamfer would come out more accurately. From memory, each piece took about 6–8 hours, depending on its size.
+
+The printer is made for kids getting into 3D printing, and the prints weren't perfectly precise or repeatable: the fit varied between prints at the same settings (above), and some surfaces came out rough.
+
+![Rough patches left by printing on an inside wall, next to a joint socket](../photos/process/IMG_8117.jpg)
+
+Still, with a little Dremel work and glue, it made a box we use regularly and that holds up. We like how it looks, and visitors sometimes ask where we got it.
+
 ## Finishing: Dremel and glue (late June)
 
 With all six pieces printed, they still didn't sit flush. High spots on the mating faces bumped into each other and kept the pieces from seating. A Dremel took those down.
-
-![Dremel marks near a socket where high spots were ground down](../photos/process/IMG_8117.jpg)
 
 Even seated, the friction fit wasn't enough for a box that gets picked up and moved. Plastic glue on the joints made it one rigid unit that doesn't wobble at rest.
 
@@ -153,15 +169,30 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 ![A longer knife touching both ends of a compartment](../photos/knife-too-long.jpg)
 
-**Columns didn't work in practice.** The box was designed for three columns per compartment. In use, the cutlery slid around whenever the box was moved. Nesting the pieces flat in stacks, the way they come in the package, fixed it: the box held **more** (I haven't counted how much yet) and stopped shifting. Packaging is presumably already optimised for space, so copying it was the better layout.
+**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. Whenever the box was moved, the stacks wobbled and the cutlery slid around.
 
-**Re-assigning the compartments.** With stacking, compartment width matters differently. The widest compartments hold the most, so the types moved: spoons, which we use least, went into the narrowest compartment (designed for knives). Forks are in the middle and knives in the widest.
+**Packing it like the packaging.** The packaging gave me the idea: it lays the pieces on edge, nested tightly together, and that turned out to be very stable and space-efficient. Once I saw how much more fit that way, I stopped aiming for the same amount of each type and split the space by how much we use each:
 
-![The box in use, with cutlery nested in stacks](../photos/finished-loaded.jpg)
+- **Forks**, which we use most, went into the widest compartment, on edge in two rows.
+- **Spoons**, which we use least, went into the narrowest, also on edge in two rows.
+- **Knives** went into the middle, loosely packed: roughly parallel, but not in neat stacks. They were hard to stand on edge by hand. But a knife is just a long shaft without the big head of a fork or a spoon, so they don't tangle and are still easy to pick up, and a lot of them fit. In the narrowest compartment, though, getting a hand in to grab a knife was awkward.
+
+| Before: face-up stacks (here with spoons and knives already swapped) | Now: on edge, split by use |
+|---|---|
+| ![The box with cutlery in face-up stacks](../photos/finished-loaded.jpg) | ![The box with forks and spoons on edge in two rows and knives loosely packed](../photos/final-layout.jpg) |
+
+| | Columns (as designed) | On edge, split by use | Change |
+|---|---|---|---|
+| Spoons | 36 (widest) | 48 (narrowest) | +33% |
+| Forks | 36 (middle) | 56 (widest) | +56% |
+| Knives | 48 (narrowest) | 80 (middle) | +67% |
+| **Total** | **120** | **184** | **+53%** |
+
+Each type also changed compartment, so the per-type change mixes the new packing with the new compartment size. The total is the fairer comparison.
+
+This split suits how we use it; other layouts are worth trying. If you use fewer knives, they could go in the narrowest compartment and the spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
 
 **A second one.** My brother had been looking for the same thing, so I printed one for him too.
-
-Open question: forks are what we use most, so they may belong in the widest compartment, with knives in the middle. Whether that's better also depends on how easy each type is to grab out of its compartment.
 
 **No lid, so far.** The rim has everything a clear 2 mm lid needs, but the food-safe sheets I found were expensive or not good enough, and we haven't missed a lid. If you know a good source, please [open an issue](../README.md#feedback).
 
@@ -171,13 +202,13 @@ Open question: forks are what we use most, so they may belong in the widest comp
 - **Printer variance is part of the design.** Clearances that worked on one print failed on the next. Coupons narrow the range; a Dremel and glue close the gap.
 - **Change one variable at a time.** Freezing the socket and testing only the male side is what finally made progress on the joint.
 - **Measure the full range, not one sample.** One long knife from another brand was enough to miss.
-- **Use reveals what planning can't.** The layout that works (nested stacks), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
+- **Use reveals what planning can't.** The layout that works (on edge, like the packaging), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
 - **Plain Claude got a working design,** with a lot of human rendering, printing and judging in the loop. It couldn't run OpenSCAD or touch the prints: I rendered, printed and photographed, and it worked from my screenshots and its own diagrams.
 
 ## Next version
 
 - **Try text-to-CAD and other CAD tools for language models,** and compare against this plain-chat baseline: how many rounds, how many test prints, and how good the result is.
-- **Design for stacks from the start:** size the compartments for nested cutlery and for how often each type is used, and check how easy each is to grab.
+- **Design for packing on edge from the start:** size the compartments for nested cutlery and for how often each type is used, and check how easy each is to grab.
 - **Measure several brands,** including the longest knife likely to end up in the box.
 - **Design the joints for glue,** or for a looser fit that tolerates print-to-print variation, rather than relying on a precise friction fit.
 - **A lid:** find an affordable food-safe sheet, or design a printable one.

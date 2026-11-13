@@ -8,7 +8,7 @@ Owner: Meir Messingher Lang (@meirmsn). Robot hands: @meirmsn-agent.
 
 ## What this is
 
-A three-compartment box for disposable knives, forks and spoons. It was designed in OpenSCAD with plain Claude in chat (no text-to-CAD tools) in June 2026, printed in six pieces on the owner's son's AOSEED printer (120 mm cube build area), finished with a Dremel and plastic glue, and in daily use since July 2026. The public docs are `README.md` (one screen) and `docs/BUILD_LOG.md` (the full story).
+A three-compartment box for disposable knives, forks and spoons. It was designed in OpenSCAD with plain Claude in chat (no text-to-CAD tools) in June 2026, printed in six pieces on the owner's son's AOSEED X-MAKER JOY AI+ (120 mm cube build area; `photos/printer.jpg`), finished with a Dremel and plastic glue, and in daily use since July 2026. The public docs are `README.md` (one screen) and `docs/BUILD_LOG.md` (the full story).
 
 ## Layout
 
@@ -18,7 +18,7 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 | `stl/` | The six exported pieces (the owner's own F6 exports of v25), plus `test-coupons/`. |
 | `tools/` | Coupon generators, `render_stl.py` (grey z-buffer renderer, no OpenSCAD needed), `render_versions.sh` (OpenSCAD renders of all versions). |
 | `photos/` | Finished-box photos; `process/` holds test-print photos taken on 2026-08-31 of leftover prints. Resized to 1600 px, all metadata (including GPS) stripped. |
-| `docs/img/` | Images used by the docs; `renders/` was made with `tools/render_stl.py`. `social-preview.png` (1280×640) is for GitHub settings. |
+| `docs/img/` | Images used by the docs; `renders/` was made with `tools/render_stl.py`. The social preview is `docs/social-preview.png` (1280×640, made with `tools/make_social_preview.py`). |
 | `archive/` | Every version v1–v25, notes, the original Python generator, design diagrams and feedback screenshots. See `archive/README.md`. |
 
 ## Working rules (from the owner)
@@ -31,14 +31,15 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 - **Process:** keep each change on one PR branch. End each round with one short list of things only he can do, and no TODOs buried in the docs.
 - **Commits:** author `meirmsn-agent <340873665+meirmsn-agent@users.noreply.github.com>`, with the trailer `Co-authored-by: Meir Messingher Lang <meirmsn@users.noreply.github.com>`.
 - **Images:** strip all metadata before committing (the owner's phone photos carry GPS), and crop out any fingertip shown sharply enough to copy a fingerprint from (blurred or side-on fingers are fine). IMG_8093–8096 (coupons held between sharp fingertips) were left out for that reason, and IMG_8079, 8082, 8083, 8090, 8091 and 8106 were cropped.
-- **Renders:** neutral grey (`#c9ccd1` on white), as the model looked while designing. Colour appears only in photos. The piece colours were never a design decision, and the prints use gradient filament.
+- **Renders:** neutral grey (`#c9ccd1` on white), as the model looked while designing. Colour appears only in photos. The piece colours were never a design decision, and the prints use gradient filament. The one exception, at his request: the social preview's render is in the print colours (`render_stl.py --colors`).
 - **Dates:** design dates come from file timestamps in US Pacific time. The notes in `archive/notes/` are dated in UTC, so some read a day later.
 
 ## Facts from the owner that are not in the archive notes
 
 - **Why:** disposable cutlery comes in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, and none can be washed. Organizers for real cutlery hold too few pieces and don't lock. His taped DIY dividers were flimsy and unhygienic. He never had time to design it in CAD; with Claude it was fast and fun. His brother had been looking for one too, so he printed a second.
 - **Sizing:** measured cutlery plus published sizes. A particularly long knife from another brand doesn't fit (it touches both ends); their usual brand fits.
-- **In use:** three columns per compartment wobbled when the box was moved. Nesting the cutlery flat in stacks, like the packaging, raised capacity (not yet counted) and stability. Spoons (least used) moved to the narrowest compartment, forks to the middle, knives to the widest. He's considering forks (most used) in the widest, depending on how easy each type is to grab.
+- **In use:** the designed layout, three face-up columns per compartment (knives narrowest, forks middle, spoons widest), held 36 spoons, 36 forks, 48 knives (120) and wobbled when the box was moved. An intermediate step swapped spoons and knives, still face up (`photos/finished-loaded.jpg`). The final layout (`photos/final-layout.jpg`), inspired by the packaging: forks (most used) on edge in two rows in the widest, 56; spoons (least used) on edge in two rows in the narrowest, 48; knives "loosely packed" in the middle, 80 (184 total, +53%). Knives are hard to stand on edge by hand but don't tangle and are easy to grab; reaching into the narrowest compartment for them was awkward.
+- **Printing:** fine setting, 0.12 mm layers, for a more accurate chamfer. Filament: iSANMATE PLA+ Rainbow colour-change, 1.75 mm. About 6–8 h per piece, from memory. The printer is a kids' entry printer; describe its imprecision as observations, not as a fault, alongside the fact that the box came out reliable and good-looking (visitors ask where it's from).
 - **Lid:** never made. Food-safe sheets he found were too expensive or not good enough, and he hasn't needed one. He wants suggestions: affordable, food-safe, good surface finish, about 196.5 × 290 × 2 mm, rounded edges. The hinge was designed as a half-round channel plus an angled opening, so the lid can swing up and also lift out (for serving).
 - **Finishing:** a Dremel removed high spots that kept pieces from seating; plastic glue makes the box rigid and stops it wobbling at rest.
 - **Next version:** try text-to-CAD tools and compare against this plain-Claude baseline (he didn't know they existed in June 2026).
@@ -50,17 +51,17 @@ Public on GitHub with description and topics set. Release [`v1.0`](https://githu
 ## Open items
 
 Things only the owner can provide:
-- **Capacity:** count, nested stacks vs. the three-column layout, then add the figure to the README and build log ("held more (I haven't counted how much yet)").
-- **Lid-version renders (v5–v23):** run `bash tools/render_versions.sh` on a machine with OpenSCAD and choose renders for the lid section of the build log.
+- **Designed-layout photo:** the owner is taking one (knives narrowest, forks middle, spoons widest, face up). It replaces `photos/finished-loaded.jpg` on the left of the capacity comparison in `docs/BUILD_LOG.md`; strip metadata, 1600 px.
+- **Social-preview photo (optional):** the draft uses `photos/finished-empty.jpg`, already close to the render's angle. A new photo can replace it; rerun `tools/make_social_preview.py`.
 - **Brother's box:** a photo, if he gets one.
 - **Optional:** a Printables or MakerWorld listing to link from the README.
-- **Never answered:** layer height, nozzle, filament material and brand, print time and filament used; the exact AOSEED model; which full-height test tongue won (1 dot = standard, 2 dots = 1 mm deeper); whether the box in use is exactly v25. Leave these out of the docs unless he answers.
-- **Caption to confirm:** `photos/process/IMG_8117.jpg` is captioned as showing Dremel marks.
+- **Never answered:** nozzle; wall count and infill (he thinks default 2 walls and 15%, maybe 3 and 20%); exact print times and filament used (he can look them up); which full-height test tongue won (1 dot = standard, 2 dots = 1 mm deeper); whether the box in use is exactly v25. Leave these out of the docs unless he answers.
 
 Repo admin:
-- **Social preview:** upload `docs/img/social-preview.png` in the GitHub settings, if not done yet.
+- **Social preview:** upload `docs/social-preview.png` in the GitHub settings (Settings → General → Social preview).
 
 Settled; no action needed:
+- Lid-version renders: the owner's OpenSCAD renders of v1–v25 showed only the plain shell for v1–v17 in the box, seam and notch views (`assembly()` rendered `box()` until v18), and the seam view was unreadable. Only the hinge view (v4–v10) and the notch view (v19–v22) were usable; they are `docs/img/renders/hinge-groove-progression.png` and `notch-progression.png`, converted to grey. The raw renders were not committed. v20 replaced an earlier single clip and finger scallop (present since v5); v23 changed no geometry.
 - The "Option B" dovetail in `archive/notes/TRIAL_PRINT_FIX_PLAN.md` (thicker socket walls, thinner tongue) was never needed: v25 solved the fit by tightening the tongue to 0.15 mm per side.
 
 Known minor mesh nits in `stl/`, left alone because the box printed fine:
