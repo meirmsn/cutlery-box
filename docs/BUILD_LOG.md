@@ -85,13 +85,13 @@ Versions 5 to 23 added features for a flat clear lid, all cut into the top of th
 - **A finger notch** between the clips, where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge. Until v20 there was one clip and a small finger scallop instead.
 
 ![The hinge wall in four versions: a plain wall, then the groove with its round channel and angled opening](img/renders/hinge-wall-progression.png)
-*The hinge wall, seen at the edge where the piece was cut, in the final shape (v24 and v25): the round channel the lid edge sits in, and the angled opening above it.*
+*The hinge wall, seen at the edge where the piece was cut. The Python script and v4 have a plain wall; v24 and v25 have the final groove: the round channel the lid edge sits in, and the angled opening above it.*
 
 ![The hinge groove in six versions from June 21 to 22, seen at the cut edge](img/renders/hinge-groove-progression.png)
-*How the groove got there, the same wall in OpenSCAD renders. v4 has no groove. v5 cuts a first short groove and v6 makes it one round channel along the whole wall, open at the rim. v8 drops it 2 mm so the rim covers it and should hold the lid's edge when the lid is raised. v9 sets it back 2 mm behind a slot so that cover actually holds, and v10 opens it above with one straight ramp so the lid can swing up without catching.*
+*How the groove got there, the same wall in OpenSCAD renders. v4 has no groove. v5 cuts it in three short segments, one per compartment, stopping short of the joints, so here it barely shows. v6 makes it one round channel along the whole wall, open at the rim. v8 drops it 2 mm so the rim covers it and should hold the lid's edge when the lid is raised. v9 sets it back 2 mm behind a slot so that cover actually holds, and v10 opens it above with one straight ramp so the lid can swing up without catching.*
 
 ![The finger notch and clips in four versions from June 22](img/renders/notch-progression.png)
-*The clip wall, seen from inside. v19 still has the first design, a small finger scallop below the rail. v20 replaces it with a notch cut through the rim between two clips, v21 arches the notch, and v22 cuts the rail away under it.*
+*The clip wall, seen from inside. v19 still has the first design: one wider clip and a small finger scallop. v20 replaces it with a notch cut through the rim between two clips, v21 arches the notch, and v22 cuts the rail away under it.*
 
 | The finger notch and the two clips, rendered | The same notch, printed |
 |---|---|
@@ -171,7 +171,7 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 **Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. Whenever the box was moved, the stacks wobbled and the cutlery slid around.
 
-**Packing it like the packaging.** The packaging gave me the idea: it lays the pieces on edge, nested tightly together, and that turned out to be very stable and space-efficient. Once I saw how much more fit that way, I stopped aiming for the same amount of each type and split the space by how much we use each:
+**Packing it like the packaging.** The packaging gave me the idea: it lays the pieces on edge, nested tightly together, and that turned out to be very space-efficient. Once I saw how much more fit that way, I stopped aiming for the same amount of each type and split the space by how much we use each:
 
 - **Forks**, which we use most, went into the widest compartment, on edge in two rows.
 - **Spoons**, which we use least, went into the narrowest, also on edge in two rows.
@@ -190,7 +190,7 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 Each type also changed compartment, so the per-type change mixes the new packing with the new compartment size. The total is the fairer comparison.
 
-This split suits how we use it; other layouts are worth trying. If you use fewer knives, they could go in the narrowest compartment and the spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
+This split suits how we use it; other layouts are worth trying. Knives could also go in the narrowest compartment and spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
 
 **A second one.** My brother had been looking for the same thing, so I printed one for him too.
 

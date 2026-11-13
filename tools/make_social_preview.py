@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Compose the GitHub social preview (1280 x 640): the model on the left, the
-printed box on the right, under a one-line title. Needs Pillow.
+printed box on the right, under a one-line title. Needs Pillow; uses DejaVu
+Sans if installed, else Pillow's default font.
 
-  python3 tools/render_stl.py render.png stl/ --px 1400 --elev 50 --azim 15 \\
+  python3 tools/render_stl.py render.png stl/ --px 1400 --elev 58 --azim 12 \\
       --colors '#c79a4c:#72bb7e' '#c4524f:#e2895c' '#4f9a62:#3a7fa6' \\
                '#3c5aa6:#b84c9c' '#2f5aa0:#8d50a3' '#c24c50:#e2895c'
-  python3 tools/make_social_preview.py render.png photos/finished-empty.jpg docs/social-preview.png
+  python3 tools/make_social_preview.py render.png photos/finished-empty.jpg docs/social-preview.png \\
+      --crop 95 0 1595 1125
 
 The --colors order follows the files in stl/: fork A, fork B, knife A, knife B,
 spoon A, spoon B, each as BOTTOM:TOP, picked by eye from the photos. Take the
@@ -58,8 +60,13 @@ def main():
     out.paste(fit(r, PW, PH, bg), (gap, TOP))
     out.paste(p, (2 * gap + PW, TOP))
     d = ImageDraw.Draw(out)
-    d.text((W // 2, 62), a.title, fill=(40, 40, 40), font=ImageFont.truetype(FONT_B, 44), anchor='mm')
-    d.text((W // 2, 112), a.subtitle, fill=(100, 100, 100), font=ImageFont.truetype(FONT, 22), anchor='mm')
+    def font(path, size):
+        try:
+            return ImageFont.truetype(path, size)
+        except OSError:
+            return ImageFont.load_default(size)
+    d.text((W // 2, 62), a.title, fill=(40, 40, 40), font=font(FONT_B, 44), anchor='mm')
+    d.text((W // 2, 112), a.subtitle, fill=(100, 100, 100), font=font(FONT, 22), anchor='mm')
     out.save(a.out, optimize=True)
     print('wrote', a.out, out.size)
 

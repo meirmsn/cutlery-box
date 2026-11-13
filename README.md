@@ -16,7 +16,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 
 ## What it does
 
-- Holds 184 pieces of standard disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
+- Holds 184 pieces of our usual disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
 - Prints on a small printer with a 120 × 120 × 120 mm build area, with no support material (the throwaway scaffolding printers add under overhangs)
 - Assembles into one box with no screws: the joints are hidden inside the walls, leaving only straight seam lines
 - Lets you change the compartment sizes and height in one file to fit other cutlery
@@ -27,7 +27,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **Hidden dovetails behind straight edges.** Vertical sliding dovetails sit inside the 6 mm walls, and a cap covers each joint at the top so the rim shows one straight seam line. Pieces drop in from above.
 - **Printable without supports.** The undersides of the joint caps slope at 50°, the base seams use 45° wedges, and the few remaining overhangs are short enough to print in mid-air.
 - **Tuned on printed coupons, then finished by hand.** The joint fit was dialled in with coupons (small test pieces) at 0.05–0.20 mm of gap on each side of the joint. Fit still varied from print to print at the same settings, so the final assembly needed a Dremel and plastic glue.
-- **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those wobbled when the box was moved. Packing the cutlery on edge the way it comes packaged, with the most-used type in the widest compartment, holds 184 pieces instead of 120 and stays put.
+- **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those wobbled when the box was moved. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
 - **Tried and dropped:** a Python generator that wrote meshes directly (it couldn't cut one solid cleanly with another), flat base joints (they trapped support material), and a lid (see Known limitations).
 
 ## Build log
