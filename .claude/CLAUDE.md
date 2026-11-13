@@ -30,7 +30,7 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 - **Review before every PR:** an adversarial pass that cuts anything a skeptic would call fluff, wrong or self-flattering. Best done by a separate agent that checks claims against `archive/notes/`, the scad parameters and the photos.
 - **Process:** keep each change on one PR branch. End each round with one short list of things only he can do, and no TODOs buried in the docs.
 - **Commits:** author `meirmsn-agent <340873665+meirmsn-agent@users.noreply.github.com>`, with the trailer `Co-authored-by: Meir Messingher Lang <meirmsn@users.noreply.github.com>`.
-- **Images:** strip all metadata before committing. The owner's phone photos carry GPS.
+- **Images:** strip all metadata before committing (the owner's phone photos carry GPS), and crop out any fingertip shown sharply enough to copy a fingerprint from (blurred or side-on fingers are fine). IMG_8093–8096 (coupons held between sharp fingertips) were left out for that reason, and IMG_8079, 8082, 8083, 8090, 8091 and 8106 were cropped.
 - **Renders:** neutral grey (`#c9ccd1` on white), as the model looked while designing. Colour appears only in photos. The piece colours were never a design decision, and the prints use gradient filament.
 - **Dates:** design dates come from file timestamps in US Pacific time. The notes in `archive/notes/` are dated in UTC, so some read a day later.
 
