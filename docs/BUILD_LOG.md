@@ -46,7 +46,9 @@ Rather than print a whole piece, the first tests were short slices of a piece: e
 
 ![Two ways to build a corner: on screen they look the same, but only one prints solid](img/hollow-corner-explained.png)
 
-**Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above.
+**Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above. At first, two knives side by side seemed about right, with room for fingers to grab them; once the walls were full height, the narrow compartment turned out hard to grab knives from.
+
+![The first test print of the knife compartment, where the hollow corners showed: two knives fit side by side, a third didn't](../photos/process/first-print-knives.jpg)
 
 > **Lesson:** "looks solid on screen" is not "slices solid." And measure the real objects before sizing anything.
 
@@ -169,17 +171,19 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 ![A longer knife touching both ends of a compartment](../photos/knife-too-long.jpg)
 
-**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. Whenever the box was moved, the stacks wobbled and the cutlery slid around.
+**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. The stacks were unstable even with the box standing still, and they fell over as soon as it was moved. I could only keep knives stacked using new ones, placed with great care; otherwise they kept falling.
+
+I had checked on every newly printed part that three pieces fit side by side, but I never tried stacking them until the whole box was built. As soon as I had the two knife pieces, I could have tried the stacks I was planning for and seen quickly that they didn't work. Maybe that would have sent me back to the design: for example, printing dividers between the columns. But then I might never have found the packing that holds far more. It's hard to say.
 
 **Packing it like the packaging.** The packaging gave me the idea: it lays the pieces on edge, nested tightly together, and that turned out to be very space-efficient. Once I saw how much more fit that way, I stopped aiming for the same amount of each type and split the space by how much we use each:
 
 - **Forks**, which we use most, went into the widest compartment, on edge in two rows.
-- **Spoons**, which we use least, went into the narrowest, also on edge in two rows.
+- **Spoons**, which we use least, went into the narrowest, also on edge in two rows. They're still easy to grab there.
 - **Knives** went into the middle, loosely packed: roughly parallel, but not in neat stacks. They were hard to stand on edge by hand. But a knife is just a long shaft without the big head of a fork or a spoon, so they don't tangle and are still easy to pick up, and a lot of them fit. In the narrowest compartment, though, getting a hand in to grab a knife was awkward.
 
-| Before: face-up stacks (here with spoons and knives already swapped) | Now: on edge, split by use |
+| As designed: three face-up columns (the knife stacks kept falling, so only one layer is shown) | Now: on edge, split by use |
 |---|---|
-| ![The box with cutlery in face-up stacks](../photos/finished-loaded.jpg) | ![The box with forks and spoons on edge in two rows and knives loosely packed](../photos/final-layout.jpg) |
+| ![The box as designed: knives in the narrowest compartment, forks in the middle and spoons in the widest, in face-up stacks](../photos/designed-layout.jpg) | ![The box with forks and spoons on edge in two rows and knives loosely packed](../photos/final-layout.jpg) |
 
 | | Columns (as designed) | On edge, split by use | Change |
 |---|---|---|---|
@@ -189,6 +193,8 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 | **Total** | **120** | **184** | **+53%** |
 
 Each type also changed compartment, so the per-type change mixes the new packing with the new compartment size. The total is the fairer comparison.
+
+The new layout has trade-offs. Three neat columns look nicer, so it's function over looks. It may also be less hygienic. To pack in less height, the two rows face opposite ways: the spoons, for example, lie with their heads down in one row and up in the other. So fingers reaching for the top row can touch the heads in the bottom row. We don't mind much, since most of the people who use it are family.
 
 This split suits how we use it; other layouts are worth trying. Knives could also go in the narrowest compartment and spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
 
@@ -202,7 +208,7 @@ This split suits how we use it; other layouts are worth trying. Knives could als
 - **Printer variance is part of the design.** Clearances that worked on one print failed on the next. Coupons narrow the range; a Dremel and glue close the gap.
 - **Change one variable at a time.** Freezing the socket and testing only the male side is what finally made progress on the joint.
 - **Measure the full range, not one sample.** One long knife from another brand was enough to miss.
-- **Use reveals what planning can't.** The layout that works (on edge, like the packaging), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
+- **Use reveals what planning can't, so test the use early.** The layout that works (on edge, like the packaging), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
 - **Plain Claude got a working design,** with a lot of human rendering, printing and judging in the loop. It couldn't run OpenSCAD or touch the prints: I rendered, printed and photographed, and it worked from my screenshots and its own diagrams.
 
 ## Next version

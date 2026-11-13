@@ -27,7 +27,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **Hidden dovetails behind straight edges.** Vertical sliding dovetails sit inside the 6 mm walls, and a cap covers each joint at the top so the rim shows one straight seam line. Pieces drop in from above.
 - **Printable without supports.** The undersides of the joint caps slope at 50°, the base seams use 45° wedges, and the few remaining overhangs are short enough to print in mid-air.
 - **Tuned on printed coupons, then finished by hand.** The joint fit was dialled in with coupons (small test pieces) at 0.05–0.20 mm of gap on each side of the joint. Fit still varied from print to print at the same settings, so the final assembly needed a Dremel and plastic glue.
-- **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those wobbled when the box was moved. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
+- **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those stacks kept falling over, even standing still. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
 - **Tried and dropped:** a Python generator that wrote meshes directly (it couldn't cut one solid cleanly with another), flat base joints (they trapped support material), and a lid (see Known limitations).
 
 ## Build log
@@ -39,7 +39,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **2026-06-23:** Dovetail fit tuned with graduated test coupons and full-height test tongues. All base joints changed to 45° wedges.
 - **2026-06-24:** Final model (v25). Six STLs exported.
 - **By 2026-06-30:** All six pieces printed, high spots Dremelled down, box assembled and glued.
-- **2026-07-05:** In daily use. Since then the cutlery has moved from face-up columns, which wobbled, to on edge like the packaging: 184 pieces instead of 120 (+53%).
+- **2026-07-05:** In daily use. Since then the cutlery has moved from face-up columns, which kept falling over, to on edge like the packaging: 184 pieces instead of 120 (+53%).
 
 ![Renders of the model on June 20, 21, 22 and 24: the overall shape barely changes](docs/img/renders/progression.png)
 ![Close-up of one rim seam in the same four versions](docs/img/renders/seam-top-progression.png)
