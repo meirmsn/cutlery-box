@@ -4,6 +4,8 @@ This repo is the **single source of truth** for the project. It replaced a local
 
 Owner: Meir Messingher Lang (@meirmsn). Robot hands: @meirmsn-agent.
 
+**At the start of every session, before anything else, give the owner a short summary of the [Open items](#open-items) below** (one line each), so pending work and unanswered questions surface even if he doesn't ask. When an item is done or answered, update this file in the same PR: remove the item, and move any new fact into the docs or the facts section below.
+
 ## What this is
 
 A three-compartment box for disposable knives, forks and spoons. It was designed in OpenSCAD with plain Claude in chat (no text-to-CAD tools) in June 2026, printed in six pieces on the owner's son's AOSEED printer (120 mm cube build area), finished with a Dremel and plastic glue, and in daily use since July 2026. The public docs are `README.md` (one screen) and `docs/BUILD_LOG.md` (the full story).
@@ -52,8 +54,13 @@ Things only the owner can provide:
 - **Caption to confirm:** `photos/process/IMG_8117.jpg` is captioned as showing Dremel marks.
 
 Repo admin:
+- **First push (if not done):** this file was written before the GitHub repo existed. If `main` has only the LICENSE commit, the `package-v1` branch's PR still needs opening and merging.
+- **After the repo is public:** replace the README in the old local folder with a one-line "moved to github.com/meirmsn/cutlery-box" note, and add the same pointer as a doc in the claude.ai project "Cutlery Box".
 - **Release `v1.0`:** attach the six STLs, `cutlery-box-stl-v1.0.zip` (`stl/*.stl` plus `stl/test-coupons/*.stl`) and `cutlery-box-photos-v1.0.zip` (`photos/**/*.jpg`).
 - **GitHub settings:** set the description and topics (openscad, 3d-printing, 3d-printable, dovetail, kitchen, organizer, claude). The owner uploads the social preview and flips the repo public.
+
+Settled; no action needed:
+- The "Option B" dovetail in `archive/notes/TRIAL_PRINT_FIX_PLAN.md` (thicker socket walls, thinner tongue) was never needed: v25 solved the fit by tightening the tongue to 0.15 mm per side.
 
 Known minor mesh nits in `stl/`, left alone because the box printed fine:
 - a few zero-area triangles
