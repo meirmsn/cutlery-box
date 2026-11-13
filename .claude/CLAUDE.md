@@ -1,6 +1,6 @@
 # Cutlery Box: context for Claude sessions
 
-This repo is the **single source of truth** for the project. It replaced a local project folder on the owner's computer, which is deprecated. Everything from that folder is here: the final model and STLs at the top level, everything else byte-identical under `archive/` (images re-saved only to strip metadata). The original design conversations with Claude (June 2026, claude.ai chats) are not exportable; their reasoning is captured in `archive/notes/CONSTRUCTION_STORY.md` and `archive/notes/TRIAL_PRINT_FIX_PLAN.md`.
+This repo is the **single source of truth** for the project. It replaced a local project folder on the owner's computer, which he has deleted. Everything from that folder is here: the final model and STLs at the top level, everything else byte-identical under `archive/` (images re-saved only to strip metadata). The original design conversations with Claude (June 2026, claude.ai chats) are not exportable; their reasoning is captured in `archive/notes/CONSTRUCTION_STORY.md` and `archive/notes/TRIAL_PRINT_FIX_PLAN.md`.
 
 Owner: Meir Messingher Lang (@meirmsn). Robot hands: @meirmsn-agent.
 
@@ -43,6 +43,10 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 - **Finishing:** a Dremel removed high spots that kept pieces from seating; plastic glue makes the box rigid and stops it wobbling at rest.
 - **Next version:** try text-to-CAD tools and compare against this plain-Claude baseline (he didn't know they existed in June 2026).
 
+## Repo setup (done 2026-11)
+
+Public on GitHub with description and topics set. Release [`v1.0`](https://github.com/meirmsn/cutlery-box/releases/tag/v1.0) carries `cutlery-box-stl-v1.0.zip` (`stl/*.stl` plus `stl/test-coupons/*.stl`) and `cutlery-box-photos-v1.0.zip` (`photos/**/*.jpg`). The old local folder is deleted, so no "moved to" pointer is needed there or in claude.ai.
+
 ## Open items
 
 Things only the owner can provide:
@@ -54,10 +58,7 @@ Things only the owner can provide:
 - **Caption to confirm:** `photos/process/IMG_8117.jpg` is captioned as showing Dremel marks.
 
 Repo admin:
-- **First push (if not done):** this file was written before the GitHub repo existed. If `main` has only the LICENSE commit, the `package-v1` branch's PR still needs opening and merging.
-- **After the repo is public:** replace the README in the old local folder with a one-line "moved to github.com/meirmsn/cutlery-box" note, and add the same pointer as a doc in the claude.ai project "Cutlery Box".
-- **Release `v1.0`:** attach the six STLs, `cutlery-box-stl-v1.0.zip` (`stl/*.stl` plus `stl/test-coupons/*.stl`) and `cutlery-box-photos-v1.0.zip` (`photos/**/*.jpg`).
-- **GitHub settings:** set the description and topics (openscad, 3d-printing, 3d-printable, dovetail, kitchen, organizer, claude). The owner uploads the social preview and flips the repo public.
+- **Social preview:** upload `docs/img/social-preview.png` in the GitHub settings, if not done yet.
 
 Settled; no action needed:
 - The "Option B" dovetail in `archive/notes/TRIAL_PRINT_FIX_PLAN.md` (thicker socket walls, thinner tongue) was never needed: v25 solved the fit by tightening the tongue to 0.15 mm per side.
