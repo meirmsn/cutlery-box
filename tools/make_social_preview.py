@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
-"""Compose the GitHub social preview (1280 x 640): the model on the left, the
-printed box on the right, under a one-line title. Needs Pillow; uses DejaVu
+"""Compose the GitHub social preview and README hero image (1280 x 640): the six
+pieces of the model on the left, the printed box in use on the right, under a one-line title. Needs Pillow; uses DejaVu
 Sans if installed, else Pillow's default font.
 
-  python3 tools/render_stl.py render.png stl/ --px 1400 --elev 58 --azim 12 \\
+  python3 tools/render_stl.py render.png stl/ --px 1400 --elev 62 --azim 8 --explode 14 \\
       --colors '#c79a4c:#72bb7e' '#c4524f:#e2895c' '#4f9a62:#3a7fa6' \\
                '#3c5aa6:#b84c9c' '#2f5aa0:#8d50a3' '#c24c50:#e2895c'
-  python3 tools/make_social_preview.py render.png photos/finished-empty.jpg docs/social-preview.png \\
-      --crop 95 0 1595 1125
+  python3 tools/make_social_preview.py render.png photos/final-layout.jpg docs/social-preview.png
 
 The --colors order follows the files in stl/: fork A, fork B, knife A, knife B,
 spoon A, spoon B, each as BOTTOM:TOP, picked by eye from the photos. Take the
-photo from roughly the same angle (from the finger-notch side, narrow
-compartment on the left). --crop L T R B picks the part of the photo to use;
+photo from roughly the same angle (from above, finger-notch side nearest,
+narrow compartment on the left). --crop L T R B picks the part of the photo to use;
 by default the centre 4:3 is used.
 """
 import argparse

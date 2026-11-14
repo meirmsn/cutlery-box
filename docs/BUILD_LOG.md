@@ -18,7 +18,7 @@ I always thought this should exist, but never had the time to design it in CAD. 
 
 **The constraint that shaped everything:** the printer, my son's AOSEED X-MAKER JOY AI+, builds at most 120 × 120 × 120 mm. Disposable cutlery is about 190 mm long, and a box for three types side by side is about 300 mm wide. It can't print in one piece in either direction.
 
-![The X-MAKER JOY AI+ printer, door open, with its build plate](../photos/printer.jpg)
+<p align="center"><img src="../photos/printer.jpg" alt="The X-MAKER JOY AI+ printer, door open, with its build plate" width="240"></p>
 
 So the box is cut into a grid: three compartments across, two halves (A and B) along the length, six pieces in all, each small enough for the printer. Neighbouring compartments share one wall to save space, and there are no dividers inside a compartment.
 
@@ -40,7 +40,7 @@ The first version was a Python script, written by Claude, that wrote triangle me
 
 Rather than print a whole piece, the first tests were short slices of a piece: enough height to check the corners and the joints.
 
-![Early test print: a short slice of one piece, with the infill visible in the cut walls](../photos/process/IMG_8075.jpg)
+<p align="center"><img src="../photos/process/IMG_8075.jpg" alt="Early test print: a short slice of one piece, with the infill visible in the cut walls" width="360"></p>
 
 **Hollow corners.** The corners where the walls meet came out empty, even though they looked solid on screen. The script built each wall as a separate solid, overlapping at the corners, and left it to the slicer to merge them. This slicer treats a region covered twice as *outside*, so every overlap printed as a hole. The fix was walls that meet edge to edge instead of overlapping.
 
@@ -48,7 +48,7 @@ Rather than print a whole piece, the first tests were short slices of a piece: e
 
 **Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above. At first, two knives side by side seemed about right, with room for fingers to grab them; once the walls were full height, the narrow compartment turned out hard to grab knives from.
 
-![The first test print of the knife compartment, where the hollow corners showed: two knives fit side by side, a third didn't](../photos/process/first-print-knives.jpg)
+<p align="center"><img src="../photos/process/first-print-knives.jpg" alt="The first test print of the knife compartment, where the hollow corners showed: two knives fit side by side, a third didn't" width="360"></p>
 
 > **Lesson:** "looks solid on screen" is not "slices solid." And measure the real objects before sizing anything.
 
@@ -116,13 +116,13 @@ Then came the first trial pieces, with four problems. The annotations are from t
 
 **Warping.** Some pieces also lifted at the corners while printing, so the bottom edge no longer lies flat:
 
-![A test piece held edge-on: its bottom edge curls up at the corner instead of lying flat](../photos/process/IMG_8082.jpg)
+<p align="center"><img src="../photos/process/IMG_8082.jpg" alt="A test piece held edge-on: its bottom edge curls up at the corner instead of lying flat" width="360"></p>
 
 ## Fitting the dovetails (June 23–24)
 
 This took the most rounds. The first joints slid in but wobbled and pulled back out. Making them tighter fixed one print and jammed the next: sometimes there was good friction and sometimes none, from prints that should have been identical.
 
-![A test joint between two short pieces](../photos/process/IMG_8087.jpg)
+<p align="center"><img src="../photos/process/IMG_8087.jpg" alt="A test joint between two short pieces" width="360"></p>
 
 The approach that worked was to stop changing both sides at once. The female socket, once it printed well, was frozen. The male side (the tongue) was tested on its own against the female side (the socket), with four coupons (small test pieces) at 0.20, 0.15, 0.10 and 0.05 mm clearance per side, each marked with one to four dots so they could be told apart off the bed.
 
@@ -132,7 +132,7 @@ The approach that worked was to stop changing both sides at once. The female soc
 
 Then two full-height tongues with the real top cap checked the fit over the whole 55 mm:
 
-![Two full-height test tongues](../photos/process/IMG_8099.jpg)
+<p align="center"><img src="../photos/process/IMG_8099.jpg" alt="Two full-height test tongues" width="360"></p>
 
 The final model (v25, June 24) uses 0.15 mm per side. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
 
@@ -151,7 +151,7 @@ All six pieces were printed in iSANMATE PLA+ Rainbow, a colour-change filament (
 
 The printer is made for kids getting into 3D printing, and the prints weren't perfectly precise or repeatable: the fit varied between prints at the same settings (above), and some surfaces came out rough.
 
-![Rough patches left by printing on an inside wall, next to a joint socket](../photos/process/IMG_8117.jpg)
+<p align="center"><img src="../photos/process/IMG_8117.jpg" alt="Rough patches left by printing on an inside wall, next to a joint socket" width="360"></p>
 
 Still, with a little Dremel work and glue, it made a box we use regularly and that holds up. We like how it looks, and visitors sometimes ask where we got it.
 
@@ -169,7 +169,7 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 **A knife that didn't fit.** Our usual brand fits well within the 196 mm interior. But one particularly long knife from another brand touched both ends. The sizing came from our own measurements plus published sizes, and the outlier wasn't covered.
 
-![A longer knife touching both ends of a compartment](../photos/knife-too-long.jpg)
+<p align="center"><img src="../photos/knife-too-long.jpg" alt="A longer knife touching both ends of a compartment" width="360"></p>
 
 **Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. The stacks were unstable even with the box standing still, and they fell over as soon as it was moved. I could only keep knives stacked using new ones, placed with great care; otherwise they kept falling.
 

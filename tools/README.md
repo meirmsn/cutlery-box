@@ -8,7 +8,7 @@ The coupon generators are plain Python 3 with no dependencies; each writes a bin
 | `make_male_test.py` | `dovetail_male_test.stl` | Two full-height (55 mm) male tongues with the real top cap, at 0.15 mm per side: one at the standard depth (1 dot) and one 1 mm deeper (2 dots). |
 | `render_versions.sh` | PNGs in `renders/` | Renders all 25 archived versions with OpenSCAD at the spots that changed (rim seam, hinge wall, finger notch). Needs OpenSCAD installed. |
 | `render_stl.py` | PNG | The renderer used for the images in `docs/img/renders/`: grey, flat-shaded, with close-ups of any spot. Needs numpy and Pillow; examples at the top of the file. `--colors` gives each piece its own colour or gradient (used only for the social preview). |
-| `make_social_preview.py` | `docs/social-preview.png` | Puts a colour render beside a photo of the printed box, 1280 × 640, for the GitHub social preview. Commands at the top of the file. |
+| `make_social_preview.py` | `docs/social-preview.png` | Puts a colour render of the six pieces beside a photo of the box in use, 1280 × 640: the GitHub social preview and the README's first image. Commands at the top of the file. |
 
 The two coupon generators are sized against the final female socket in `scad/cutlery_box.scad` (half-widths 1.5 mm at the neck and 2.0 mm at the flare). If you change the dovetail parameters there, change them here too.
 

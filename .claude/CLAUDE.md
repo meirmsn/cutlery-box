@@ -18,7 +18,7 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 | `stl/` | The six exported pieces (the owner's own F6 exports of v25), plus `test-coupons/`. |
 | `tools/` | Coupon generators, `render_stl.py` (grey z-buffer renderer, no OpenSCAD needed), `render_versions.sh` (OpenSCAD renders of all versions). |
 | `photos/` | Finished-box photos; `process/` holds test-print photos taken on 2026-08-31 of leftover prints. Resized to 1600 px, all metadata (including GPS) stripped. |
-| `docs/img/` | Images used by the docs; `renders/` was made with `tools/render_stl.py`. The social preview is `docs/social-preview.png` (1280×640, made with `tools/make_social_preview.py`). |
+| `docs/img/` | Images used by the docs; `renders/` was made with `tools/render_stl.py`. The social preview is `docs/social-preview.png` (1280×640, made with `tools/make_social_preview.py`); it is also the README's first image. |
 | `archive/` | Every version v1–v25, notes, the original Python generator, design diagrams and feedback screenshots. See `archive/README.md`. |
 
 ## Working rules (from the owner)
@@ -30,8 +30,9 @@ A three-compartment box for disposable knives, forks and spoons. It was designed
 - **Review before every PR:** an adversarial pass that cuts anything a skeptic would call fluff, wrong or self-flattering. Best done by a separate agent that checks claims against `archive/notes/`, the scad parameters and the photos.
 - **Process:** keep each change on one PR branch. End each round with one short list of things only he can do, and no TODOs buried in the docs.
 - **Commits:** author `meirmsn-agent <340873665+meirmsn-agent@users.noreply.github.com>`, with the trailer `Co-authored-by: Meir Messingher Lang <meirmsn@users.noreply.github.com>`.
+- **Image size:** in the build log, a portrait photo on its own goes in centred at `width="360"` (the printer photo at 240), not full width; photos in side-by-side tables can stay as they are.
 - **Images:** strip all metadata before committing (the owner's phone photos carry GPS), and crop out any fingertip shown sharply enough to copy a fingerprint from (blurred or side-on fingers are fine). IMG_8093–8096 (coupons held between sharp fingertips) were left out for that reason, and IMG_8079, 8082, 8083, 8090, 8091 and 8106 were cropped.
-- **Renders:** neutral grey (`#c9ccd1` on white), as the model looked while designing. Colour appears only in photos. The piece colours were never a design decision, and the prints use gradient filament. The one exception, at his request: the social preview's render is in the print colours (`render_stl.py --colors`). The two OpenSCAD strips (`hinge-groove-progression.png`, `notch-progression.png`) are greyscale conversions of his renders, so they are darker than the `render_stl.py` ones.
+- **Renders:** neutral grey (`#c9ccd1` on white), as the model looked while designing. Colour appears only in photos. The piece colours were never a design decision, and the prints use gradient filament. The one exception, at his request: the social preview / README hero render is in the print colours (`render_stl.py --colors`). The two OpenSCAD strips (`hinge-groove-progression.png`, `notch-progression.png`) are greyscale conversions of his renders, so they are darker than the `render_stl.py` ones.
 - **Dates:** design dates come from file timestamps in US Pacific time. The notes in `archive/notes/` are dated in UTC, so some read a day later.
 
 ## Facts from the owner that are not in the archive notes
@@ -52,10 +53,10 @@ Public on GitHub with description and topics set. Release [`v1.0`](https://githu
 ## Open items
 
 Things only the owner can provide:
-- **Partially built test photo:** he's sending one of three knives fitting side by side in a partly built box. It could go in the build log next to the "three side by side, but never stacked" lesson in Living with it.
+- **Three-knives test photo:** he's sending one of three knives fitting side by side in a partly built box. It could go in the build log next to the "three side by side, but never stacked" lesson in Living with it.
 - **Knife count in columns:** the table says the designed columns held 48 knives, but the knife stacks kept falling. Ask whether 48 was counted in the box (with new knives, placed carefully) or is the design capacity, and fix the table note if needed.
 - **Unfinished sentence:** his note on the trade-offs of packing on edge ended with "But there's something". Ask what he meant to add.
-- **Social-preview photo (optional):** the draft uses `photos/finished-empty.jpg`, already close to the render's angle. A new photo can replace it; rerun `tools/make_social_preview.py`.
+- **Retake the final-layout photo:** in `photos/final-layout.jpg` the top rows of spoons and forks point in opposite directions; he'll retake it with them all pointing the same way. Then replace `photos/final-layout.jpg` (strip metadata, 1600 px) and rerun `tools/make_social_preview.py` (commands at its top) so the README hero and social preview update too.
 - **Brother's box:** a photo, if he gets one.
 - **Optional:** a Printables or MakerWorld listing to link from the README.
 - **Never answered:** nozzle; wall count and infill (he thinks default 2 walls and 15%, maybe 3 and 20%); exact print times and filament used (he can look them up); which full-height test tongue won (1 dot = standard, 2 dots = 1 mm deeper); whether the box in use is exactly v25. Leave these out of the docs unless he answers.

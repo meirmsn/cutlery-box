@@ -6,7 +6,7 @@ A three-compartment box for disposable knives, forks and spoons, designed in Ope
 
 Disposable cutlery usually lives in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, none of them can be washed, and the organizers I found for real cutlery don't hold enough. The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
 
-![The finished box on the counter: spoons and forks on edge in two rows, knives loosely packed in the middle](photos/final-layout.jpg)
+![Left: a render of the six printed pieces, pulled apart, roughly in their print colours. Right: the finished box on the counter, with spoons and forks on edge in two rows and knives loosely packed in the middle](docs/social-preview.png)
 
 ## Approach
 
