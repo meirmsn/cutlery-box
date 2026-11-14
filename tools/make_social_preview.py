@@ -42,7 +42,7 @@ def main():
     ap.add_argument('render'); ap.add_argument('photo'); ap.add_argument('out')
     ap.add_argument('--crop', type=int, nargs=4, metavar=('L', 'T', 'R', 'B'))
     ap.add_argument('--title', default='Cutlery Box')
-    ap.add_argument('--subtitle', default='Designed in OpenSCAD with Claude, printed in six pieces on a 120 mm printer')
+    ap.add_argument('--subtitle', default='Designed in OpenSCAD with Claude, printed in six pieces on a 120 mm 3D printer')
     a = ap.parse_args()
 
     bg = (255, 255, 255)

@@ -147,7 +147,7 @@ The same round of prints showed that every flat base joint still trapped support
 
 ## Printing the pieces (late June)
 
-All six pieces were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the printer's fine setting, 0.12 mm layers, so the rim chamfer would come out more accurately. From memory, each piece took about 6–8 hours, depending on its size.
+I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the printer's fine setting, 0.12 mm layers, so the rim chamfer would come out more accurately. I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember). From memory, each piece took about 6–8 hours, depending on its size.
 
 The printer is made for kids getting into 3D printing, and the prints weren't perfectly precise or repeatable: the fit varied between prints at the same settings (above), and some surfaces came out rough.
 
@@ -171,7 +171,7 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 <p align="center"><img src="../photos/knife-too-long.jpg" alt="A longer knife touching both ends of a compartment" width="360"></p>
 
-**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. The stacks were unstable even with the box standing still, and they fell over as soon as it was moved. I could only keep knives stacked using new ones, placed with great care; otherwise they kept falling.
+**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. The stacks were unstable even with the box standing still, and they fell over as soon as it was moved. I could only keep knives stacked using new ones, placed with great care; otherwise they kept falling. I did count 48 knives in the columns, but filling them was a pain.
 
 I had checked on every newly printed part that three pieces fit side by side, but I never tried stacking them until the whole box was built. As soon as I had the two knife pieces, I could have tried the stacks I was planning for and seen quickly that they didn't work. Maybe that would have sent me back to the design: for example, printing dividers between the columns. But then I might never have found the packing that holds far more. It's hard to say.
 
