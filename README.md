@@ -1,22 +1,22 @@
 # Cutlery Box
 
-> **Status: Shipped · in daily use** · last touched 2026-07
+> **Status: Shipped · in daily use** · last touched 2026-11
 
 A three-compartment box for disposable knives, forks and spoons, designed in OpenSCAD with Claude and printed in six pieces on a small hobby printer.
 
 Disposable cutlery usually lives in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, none of them can be washed, and the organizers I found for real cutlery don't hold enough. The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
 
-![The finished box on the counter, loaded with spoons, forks and knives](photos/finished-loaded.jpg)
+![Left: a render of the six printed pieces, pulled apart, roughly in their print colours. Right: the finished box on the counter, with spoons and forks on edge in two rows and knives loosely packed in the middle](docs/social-preview.png)
 
 ## Approach
 
-I designed this in June 2026 in plain chat sessions with Claude: no text-to-CAD tools, no CAD plugins, no custom workflow. It was a test of how far raw Claude gets on a physical design. It is not the detailed method used in the [devshop](https://github.com/meirmsn/abra-kadabra). Claude wrote the geometry, first as a Python script that wrote meshes directly and then as a parametric OpenSCAD model, and checked the meshes with its own scripts. It couldn't run OpenSCAD itself, so I rendered the parts, printed them on my son's printer, photographed what went wrong, and made the design calls. Human in the loop: @meirmsn; robot hands for packaging this repo: @meirmsn-agent.
+I designed this in June 2026 in plain chat sessions with Claude: no text-to-CAD tools, no CAD plugins, no custom workflow. It was a test of how far raw Claude gets on a physical design. It is not the detailed method used in the [devshop](https://github.com/meirmsn/abra-kadabra). Claude wrote the geometry, first as a Python script that wrote meshes directly and then as a parametric OpenSCAD model, and checked the meshes with its own scripts. It couldn't run OpenSCAD itself, so I rendered the parts, printed them on my son's printer (an AOSEED X-MAKER JOY AI+), photographed what went wrong, and made the design calls. Human in the loop: @meirmsn; robot hands for packaging this repo: @meirmsn-agent.
 
 What the process taught: a model that looks right on screen is not yet a part that prints. Every real problem showed up on a printed test piece, and some only showed up once the box was in daily use.
 
 ## What it does
 
-- Holds standard disposable cutlery (up to about 190 mm long) nested flat in stacks, one type per compartment
+- Holds 184 pieces of our usual disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
 - Prints on a small printer with a 120 × 120 × 120 mm build area, with no support material (the throwaway scaffolding printers add under overhangs)
 - Assembles into one box with no screws: the joints are hidden inside the walls, leaving only straight seam lines
 - Lets you change the compartment sizes and height in one file to fit other cutlery
@@ -27,7 +27,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **Hidden dovetails behind straight edges.** Vertical sliding dovetails sit inside the 6 mm walls, and a cap covers each joint at the top so the rim shows one straight seam line. Pieces drop in from above.
 - **Printable without supports.** The undersides of the joint caps slope at 50°, the base seams use 45° wedges, and the few remaining overhangs are short enough to print in mid-air.
 - **Tuned on printed coupons, then finished by hand.** The joint fit was dialled in with coupons (small test pieces) at 0.05–0.20 mm of gap on each side of the joint. Fit still varied from print to print at the same settings, so the final assembly needed a Dremel and plastic glue.
-- **Sized from real cutlery, then re-used differently.** Compartments were sized for three columns of each type, from measured cutlery. In use, nesting the cutlery in stacks the way it comes packaged held more and stopped it sliding around.
+- **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those stacks kept falling over, even standing still. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
 - **Tried and dropped:** a Python generator that wrote meshes directly (it couldn't cut one solid cleanly with another), flat base joints (they trapped support material), and a lid (see Known limitations).
 
 ## Build log
@@ -39,7 +39,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **2026-06-23:** Dovetail fit tuned with graduated test coupons and full-height test tongues. All base joints changed to 45° wedges.
 - **2026-06-24:** Final model (v25). Six STLs exported.
 - **By 2026-06-30:** All six pieces printed, high spots Dremelled down, box assembled and glued.
-- **2026-07-05:** In daily use, with the cutlery nested in stacks instead of columns.
+- **2026-07-05:** In daily use. Since then the cutlery has moved from face-up columns, which kept falling over, to on edge like the packaging: 184 pieces instead of 120 (+53%).
 
 ![Renders of the model on June 20, 21, 22 and 24: the overall shape barely changes](docs/img/renders/progression.png)
 ![Close-up of one rim seam in the same four versions](docs/img/renders/seam-top-progression.png)
@@ -57,7 +57,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - The pieces use up to 118.5 mm of a 120 mm print area. Check your printer's real usable area, and note that widening a compartment will push its pieces past it.
 - There's no lid. The rim has a hinge groove, a support rail and clips for a 2 mm clear sheet (196.5 × 290 mm), but I didn't find a food-safe sheet with the right size and finish at a reasonable price and so far haven't needed one. [Suggestions welcome](#feedback).
 - The interior is 196 mm long. Our usual disposable cutlery fits, but a longer knife from another brand didn't.
-- Compartment widths were chosen for three columns per compartment. With nested stacks, a different split would use the space better (see the build log).
+- Compartment widths were chosen for three columns per compartment, not for packing on edge. The split that works for us is in the build log; yours may differ.
 
 ## Run it
 
