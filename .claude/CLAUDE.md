@@ -52,9 +52,8 @@ Public on GitHub with description and topics set. Release [`v1.0`](https://githu
 
 ## Open items
 
-Things only the owner can provide:
+Things only the owner can provide (every open question for him goes here, so none is lost between sessions):
 - **Three-knives test photo:** he's sending one of three knives fitting side by side in a partly built box. It could go in the build log next to the "three side by side, but never stacked" lesson in Living with it.
-- **Unfinished sentence:** his note on the trade-offs of packing on edge ended with "But there's something". Ask what he meant to add.
 - **Brother's box:** a photo, if he gets one.
 - **Optional:** a Printables or MakerWorld listing to link from the README.
 - **Nozzle size:** resellers mostly list 0.4 mm for the X-MAKER JOY AI+, one lists 0.2 mm, and aoseed.com isn't reachable from the cloud sandbox. Ask him to check the printer or its manual before adding it.
