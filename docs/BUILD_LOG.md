@@ -194,7 +194,7 @@ I had checked on every newly printed part that three pieces fit side by side, bu
 
 Each type also changed compartment, so the per-type change mixes the new packing with the new compartment size. The total is the fairer comparison.
 
-The new layout has trade-offs. Three neat columns look nicer, so it's function over looks. It may also be less hygienic. To pack in less height, the two rows face opposite ways: the spoons, for example, lie with their heads down in one row and up in the other. So fingers reaching for the top row can touch the heads in the bottom row. We don't mind much, since most of the people who use it are family.
+The new layout has trade-offs. Three neat columns look nicer, so it's function over looks. It may also be less hygienic. To pack in less height, the layers alternate: under the top layer, the pieces lie with their heads at the opposite end. So fingers reaching for a spoon in the top layer, for example, can touch the heads of the spoons below it. We don't mind much, since most of the people who use it are family.
 
 This split suits how we use it; other layouts are worth trying. Knives could also go in the narrowest compartment and spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
 
