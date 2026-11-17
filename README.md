@@ -1,6 +1,20 @@
-# Cutlery Box
+<div align="center">
 
-> **Status: Shipped · in daily use** · last touched 2026-11
+<img src="photos/finished-loaded.jpg" alt="The finished cutlery box" width="560">
+
+# cutlery-box
+
+**A 3D-printed 3 compartment box for disposable cutlery, designed in OpenSCAD with Claude**
+
+[What it does](#what-it-does) · [How it works](#how-it-works) · [Build log](#build-log)
+
+![Status: shipped](https://img.shields.io/badge/status-shipped-brightgreen)
+![Last commit](https://img.shields.io/github/last-commit/meirmsn/cutlery-box)
+[![License: CC BY 4.0](https://img.shields.io/badge/license-CC_BY_4.0-blue)](LICENSE)
+
+in daily use · 2026-07
+
+</div>
 
 A three-compartment box for disposable knives, forks and spoons, designed in OpenSCAD with Claude and printed in six pieces on a small hobby printer.
 
