@@ -2,13 +2,16 @@
 """Z-buffer STL renderer used for the images in docs/img/renders/.
 
 Orthographic view, flat shading, depth-based edge lines, one neutral colour by
-default (the parts' print colours were never part of the design).
+default (the parts' print colours were never part of the design). --colors
+gives each file its own colour, or a bottom-to-top gradient written
+BOTTOM:TOP, to mimic the colour-change filament (used for the social preview).
 Needs numpy and Pillow.
 
   python3 tools/render_stl.py out.png stl/                                 # whole box
   python3 tools/render_stl.py out.png stl/ --explode 30                    # pieces pulled apart
   python3 tools/render_stl.py out.png stl/ --center 104 3 50 --width 40    # close-up of one spot
   python3 tools/render_stl.py out.png a.stl b.stl --offsetB 104            # parts not in assembled position
+  python3 tools/render_stl.py out.png a.stl b.stl --colors '#4f9a62:#3a7fa6' '#c9ccd1'  # per-file colours
 
 --elev / --azim set the view direction in degrees (azimuth measured from +x).
 """
@@ -40,12 +43,15 @@ def main():
     ap.add_argument('--explode', type=float, default=0, help='percent to push pieces apart')
     ap.add_argument('--offsetB', type=float, default=0, help='shift *_B parts in +x')
     ap.add_argument('--color', default='#c9ccd1')
+    ap.add_argument('--colors', nargs='+', help='one colour per file (after directory expansion), or BOTTOM:TOP')
     ap.add_argument('--bg', default='#ffffff')
     a = ap.parse_args()
 
     fs = []
     for p in a.files:
         fs += sorted(glob.glob(os.path.join(p, 'body_*.stl'))) if os.path.isdir(p) else [p]
+    if a.colors and len(a.colors) != len(fs):
+        ap.error('--colors needs %d entries, one per file: %s' % (len(fs), ' '.join(os.path.basename(f) for f in fs)))
     tris = []
     for f in fs:
         t = load(f)
@@ -61,6 +67,7 @@ def main():
             out.append(t + (c - mid) * a.explode / 100)
         tris = out
     T = np.vstack(tris)
+    fid = np.concatenate([np.full(len(t), k) for k, t in enumerate(tris)])
 
     # camera basis
     el, az = np.radians(a.elev), np.radians(a.azim)
@@ -116,11 +123,23 @@ def main():
         sub[upd] = zz[upd]
         ibuf[y0:y1 + 1, x0:x1 + 1][upd] = i
 
-    base = np.array([int(a.color[k:k + 2], 16) for k in (1, 3, 5)]) / 255
-    bg = np.array([int(a.bg[k:k + 2], 16) for k in (1, 3, 5)]) / 255
+    rgb = lambda h: np.array([int(h[k:k + 2], 16) for k in (1, 3, 5)]) / 255
+    bg = rgb(a.bg)
     img = np.tile(bg, (H, W, 1))
     hit = ibuf >= 0
-    img[hit] = np.clip(base[None, :] * shade[ibuf[hit]][:, None] * 1.15, 0, 1)
+    if a.colors:
+        # world z of each visible pixel, for bottom-to-top gradients
+        ys, xs = np.nonzero(hit)
+        uu = (xs + 0.5 - W / 2) / sx + cu; vv = -(ys + 0.5 - H / 2) / sx + cv
+        zw = right[2] * uu + up[2] * vv + view[2] * zbuf[ys, xs]
+        zmin, zmax = T[..., 2].min(), T[..., 2].max()
+        tz = np.clip((zw - zmin) / (zmax - zmin + 1e-9), 0, 1)[:, None]
+        lo = np.array([rgb(c.split(':')[0]) for c in a.colors]); hi = np.array([rgb(c.split(':')[-1]) for c in a.colors])
+        f = fid[ibuf[ys, xs]]
+        col = lo[f] * (1 - tz) + hi[f] * tz
+        img[ys, xs] = np.clip(col * shade[ibuf[ys, xs]][:, None] * 1.15, 0, 1)
+    else:
+        img[hit] = np.clip(rgb(a.color)[None, :] * shade[ibuf[hit]][:, None] * 1.15, 0, 1)
     # edge lines: depth jumps and crease between differently-oriented faces
     nmap = np.zeros((H, W, 3)); nmap[hit] = n[ibuf[hit]]
     zf = np.where(hit, zbuf, zbuf[hit].max() + 50 if hit.any() else 0)

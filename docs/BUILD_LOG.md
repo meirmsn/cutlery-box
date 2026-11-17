@@ -4,7 +4,7 @@ How a box for disposable cutlery went from a chat to a six-piece print in daily 
 
 [← back to README](../README.md)
 
-**Contents:** [Why](#why) · [The plan](#the-plan-june-19) · [First test prints](#first-test-prints-june-20) · [Rebuilding in OpenSCAD](#rebuilding-in-openscad-june-21) · [Trial pieces](#trial-pieces-june-22) · [Fitting the dovetails](#fitting-the-dovetails-june-2324) · [Finishing](#finishing-dremel-and-glue-late-june) · [Living with it](#living-with-it-july-onward) · [What I learned](#what-i-learned) · [Next version](#next-version)
+**Contents:** [Why](#why) · [The plan](#the-plan-june-19) · [First test prints](#first-test-prints-june-20) · [Rebuilding in OpenSCAD](#rebuilding-in-openscad-june-21) · [Trial pieces](#trial-pieces-june-22) · [Fitting the dovetails](#fitting-the-dovetails-june-2324) · [Printing](#printing-the-pieces-late-june) · [Finishing](#finishing-dremel-and-glue-late-june) · [Living with it](#living-with-it-july-onward) · [What I learned](#what-i-learned) · [Next version](#next-version)
 
 ---
 
@@ -16,7 +16,9 @@ I always thought this should exist, but never had the time to design it in CAD. 
 
 ## The plan (June 19)
 
-**The constraint that shaped everything:** the printer (an AOSEED) builds at most 120 × 120 × 120 mm. Disposable cutlery is about 190 mm long, and a box for three types side by side is about 300 mm wide. It can't print in one piece in either direction.
+**The constraint that shaped everything:** the printer, my son's AOSEED X-MAKER JOY AI+, builds at most 120 × 120 × 120 mm. Disposable cutlery is about 190 mm long, and a box for three types side by side is about 300 mm wide. It can't print in one piece in either direction.
+
+<p align="center"><img src="../photos/printer.jpg" alt="The X-MAKER JOY AI+ printer, door open, with its build plate" width="240"></p>
 
 So the box is cut into a grid: three compartments across, two halves (A and B) along the length, six pieces in all, each small enough for the printer. Neighbouring compartments share one wall to save space, and there are no dividers inside a compartment.
 
@@ -38,13 +40,15 @@ The first version was a Python script, written by Claude, that wrote triangle me
 
 Rather than print a whole piece, the first tests were short slices of a piece: enough height to check the corners and the joints.
 
-![Early test print: a short slice of one piece, with the infill visible in the cut walls](../photos/process/IMG_8075.jpg)
+<p align="center"><img src="../photos/process/IMG_8075.jpg" alt="Early test print: a short slice of one piece, with the infill visible in the cut walls" width="360"></p>
 
 **Hollow corners.** The corners where the walls meet came out empty, even though they looked solid on screen. The script built each wall as a separate solid, overlapping at the corners, and left it to the slicer to merge them. This slicer treats a region covered twice as *outside*, so every overlap printed as a hole. The fix was walls that meet edge to edge instead of overlapping.
 
 ![Two ways to build a corner: on screen they look the same, but only one prints solid](img/hollow-corner-explained.png)
 
-**Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above.
+**Too narrow.** The first column widths were too tight: only two knives fit across, not three. The compartments were re-derived from the measurements in the table above. At first, two knives side by side seemed about right, with room for fingers to grab them; once the walls were full height, the narrow compartment turned out hard to grab knives from.
+
+<p align="center"><img src="../photos/process/first-print-knives.jpg" alt="The first test print of the knife compartment, where the hollow corners showed: two knives fit side by side, a third didn't" width="360"></p>
 
 > **Lesson:** "looks solid on screen" is not "slices solid." And measure the real objects before sizing anything.
 
@@ -62,7 +66,7 @@ The Python script couldn't keep the rim's chamfer (the small bevel along the top
 ![The zero-thickness face before and after the fix](img/2026-06-21_zero-thickness-flap.png)
 *Left: the paper-thin face, in red. Right: gone after moving the cut 0.02 mm.*
 
-**Straight edges on top.** In the first versions the dovetail ran all the way up, so its trapezoid showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it prints without support.
+**Straight edges on top.** In the first versions the dovetail ran all the way up, so its trapezoid showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it should print without support.
 
 ![Close-up of the same rim seam in four versions: the dovetail outline shows on top in the first, then a single straight line](img/renders/seam-top-progression.png)
 *The same spot on the rim, where two pieces meet over a divider. In the Python version the dovetail's outline shows on top. From v4 the cap hides it under one straight line. In the later versions with lid features (v24 shown) the divider is also lowered, as described below.*
@@ -80,10 +84,16 @@ Versions 5 to 23 added features for a flat clear lid, all cut into the top of th
 - **A support rail** along three inside walls for the lid to rest on, so the lid sits 2 mm below the rim. Its underside slopes at 45° so it prints without support.
 - **A hinge groove** along one long wall: a half-round channel the lid's rounded edge sits in, set back behind a short slot so the rim covers it and should hold the lid when it's raised. A half circle alone wouldn't let the lid swing, so above it the groove opens up at an angle. That angle is meant to let the lid tilt up on its hinge and also lift right out, so the box can be left open on a table for people to help themselves.
 - **Two light clips** on the opposite wall, with a lip of only 0.3 mm, so the lid should click shut but open easily.
-- **A finger notch** between the clips (added in v20), where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge.
+- **A finger notch** between the clips, where your thumb goes to lift the lid, with the rail cut away there so a fingertip can get under the edge. Until v20 there was one clip and a small finger scallop instead.
 
 ![The hinge wall in four versions: a plain wall, then the groove with its round channel and angled opening](img/renders/hinge-wall-progression.png)
-*The hinge wall, seen at the edge where the piece was cut. From v24 the groove shows: the round channel the lid edge sits in, and the angled opening above it.*
+*The hinge wall, seen at the edge where the piece was cut. The Python script and v4 have a plain wall; v24 and v25 have the final groove: the round channel the lid edge sits in, and the angled opening above it.*
+
+![The hinge groove in six versions from June 21 to 22, seen at the cut edge](img/renders/hinge-groove-progression.png)
+*How the groove got there, the same wall in OpenSCAD renders. v4 has no groove. v5 cuts it in three short segments, one per compartment, stopping short of the joints, so here it barely shows. v6 makes it one round channel along the whole wall, open at the rim. v8 drops it 2 mm so the rim covers it and should hold the lid's edge when the lid is raised. v9 sets it back 2 mm behind a slot so that cover actually holds, and v10 opens it above with one straight ramp so the lid can swing up without catching.*
+
+![The finger notch and clips in four versions from June 22](img/renders/notch-progression.png)
+*The clip wall, seen from inside. v19 still has the first design: one wider clip and a small finger scallop. v20 replaces it with a notch cut through the rim between two clips, v21 arches the notch, and v22 cuts the rail away under it.*
 
 | The finger notch and the two clips, rendered | The same notch, printed |
 |---|---|
@@ -106,13 +116,13 @@ Then came the first trial pieces, with four problems. The annotations are from t
 
 **Warping.** Some pieces also lifted at the corners while printing, so the bottom edge no longer lies flat:
 
-![A test piece held edge-on: its bottom edge curls up at the corner instead of lying flat](../photos/process/IMG_8082.jpg)
+<p align="center"><img src="../photos/process/IMG_8082.jpg" alt="A test piece held edge-on: its bottom edge curls up at the corner instead of lying flat" width="360"></p>
 
 ## Fitting the dovetails (June 23–24)
 
 This took the most rounds. The first joints slid in but wobbled and pulled back out. Making them tighter fixed one print and jammed the next: sometimes there was good friction and sometimes none, from prints that should have been identical.
 
-![A test joint between two short pieces](../photos/process/IMG_8087.jpg)
+<p align="center"><img src="../photos/process/IMG_8087.jpg" alt="A test joint between two short pieces" width="360"></p>
 
 The approach that worked was to stop changing both sides at once. The female socket, once it printed well, was frozen. The male side (the tongue) was tested on its own against the female side (the socket), with four coupons (small test pieces) at 0.20, 0.15, 0.10 and 0.05 mm clearance per side, each marked with one to four dots so they could be told apart off the bed.
 
@@ -120,11 +130,11 @@ The approach that worked was to stop changing both sides at once. The female soc
 |---|---|
 | ![Four coupons marked with one to four dots](../photos/process/IMG_8089.jpg) | ![A coupon being slid into the socket of a printed piece](../photos/process/IMG_8090.jpg) |
 
-Then two full-height tongues with the real top cap checked the fit over the whole 55 mm:
+Then two full-height tongues with the real top cap checked the fit over the whole 55 mm, one at the standard depth (1 dot) and one 1 mm deeper (2 dots):
 
-![Two full-height test tongues](../photos/process/IMG_8099.jpg)
+<p align="center"><img src="../photos/process/IMG_8099.jpg" alt="Two full-height test tongues" width="360"></p>
 
-The final model (v25, June 24) uses 0.15 mm per side. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
+The model uses the 2-dot coupon's fit (0.15 mm per side), and I think the full-height tongue that fitted was the 1-dot, standard-depth one. The final model (v25, June 24) matches both: in the exported pieces the tongue is 2.70 mm wide at the seam, 3.70 mm at the tip and 5.0 mm deep, the same as those two test pieces. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
 
 The same round of prints showed that every flat base joint still trapped support material, so v25 also turned all of them into 45° wedges:
 
@@ -135,11 +145,29 @@ The same round of prints showed that every flat base joint still trapped support
 
 > **Lesson:** the printer's precision, and its repeatability from one print to the next, is a design input. A fit that works on one print may not on the next, even at identical settings. Test on cheap coupons, change one side of a joint at a time, and plan for some hand fitting.
 
+## Printing the pieces (late June)
+
+I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the stock 0.4 mm nozzle and the slicer's fine setting, 0.16 mm layers, so the rim chamfer would come out more accurately, with no bed adhesion (no brim or raft) and the default speed (200 mm/s) and nozzle temperature (220 °C). I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember). Support was set to "partial", and the slicer did add a little: a tiny bit under each dovetail tongue, which starts 3 mm above the floor, for the tongue to build on, and, I think on one piece, some under a joint cap. So "no supports" was the aim more than the result.
+
+| Piece | Print time | Filament |
+|---|---|---|
+| Knife A | 5 h 39 min | 68.4 g |
+| Knife B | 5 h 36 min | 65.2 g |
+| Fork A | 5 h 5 min | 59.4 g |
+| Fork B | 5 h 5 min | 57.0 g |
+| Spoon A | 5 h 18 min | 67.2 g |
+| Spoon B | 5 h 35 min | 64.4 g |
+| **All six** | **32 h 18 min** | **381.6 g** |
+
+The printer is made for kids getting into 3D printing, and the prints weren't perfectly precise or repeatable: the fit varied between prints at the same settings (above), and some surfaces came out rough.
+
+<p align="center"><img src="../photos/process/IMG_8117.jpg" alt="Rough patches left by printing on an inside wall, next to a joint socket" width="360"></p>
+
+Still, with a little Dremel work and glue, it made a box we use regularly and that holds up. We like how it looks, and visitors sometimes ask where we got it.
+
 ## Finishing: Dremel and glue (late June)
 
 With all six pieces printed, they still didn't sit flush. High spots on the mating faces bumped into each other and kept the pieces from seating. A Dremel took those down.
-
-![Dremel marks near a socket where high spots were ground down](../photos/process/IMG_8117.jpg)
 
 Even seated, the friction fit wasn't enough for a box that gets picked up and moved. Plastic glue on the joints made it one rigid unit that doesn't wobble at rest.
 
@@ -151,17 +179,38 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 **A knife that didn't fit.** Our usual brand fits well within the 196 mm interior. But one particularly long knife from another brand touched both ends. The sizing came from our own measurements plus published sizes, and the outlier wasn't covered.
 
-![A longer knife touching both ends of a compartment](../photos/knife-too-long.jpg)
+<p align="center"><img src="../photos/knife-too-long.jpg" alt="A longer knife touching both ends of a compartment" width="360"></p>
 
-**Columns didn't work in practice.** The box was designed for three columns per compartment. In use, the cutlery slid around whenever the box was moved. Nesting the pieces flat in stacks, the way they come in the package, fixed it: the box held **more** (I haven't counted how much yet) and stopped shifting. Packaging is presumably already optimised for space, so copying it was the better layout.
+**Columns didn't work in practice.** The box was designed for three columns per compartment, each a stack of cutlery lying face up: knives in the narrowest compartment, forks in the middle, spoons in the widest. The stacks were unstable even with the box standing still, and they fell over as soon as it was moved. I could only keep knives stacked using new ones, placed with great care; otherwise they kept falling. I did count 48 knives in the columns, but filling them was a pain.
 
-**Re-assigning the compartments.** With stacking, compartment width matters differently. The widest compartments hold the most, so the types moved: spoons, which we use least, went into the narrowest compartment (designed for knives). Forks are in the middle and knives in the widest.
+I had checked on every newly printed part that three pieces fit side by side, but I never tried stacking them until the whole box was built. As soon as I had the two knife pieces, I could have tried the stacks I was planning for and seen quickly that they didn't work. Maybe that would have sent me back to the design: for example, printing dividers between the columns. But then I might never have found the packing that holds far more. It's hard to say.
 
-![The box in use, with cutlery nested in stacks](../photos/finished-loaded.jpg)
+**Packing it like the packaging.** The packaging gave me the idea: it lays the pieces on edge, nested tightly together, and that turned out to be very space-efficient. Once I saw how much more fit that way, I stopped aiming for the same amount of each type and split the space by how much we use each:
 
-**A second one.** My brother had been looking for the same thing, so I printed one for him too.
+- **Forks**, which we use most, went into the widest compartment, on edge in two rows.
+- **Spoons**, which we use least, went into the narrowest, also on edge in two rows. They're still easy to grab there.
+- **Knives** went into the middle, loosely packed: roughly parallel, but not in neat stacks. They were hard to stand on edge by hand. But a knife is just a long shaft without the big head of a fork or a spoon, so they don't tangle and are still easy to pick up, and a lot of them fit. In the narrowest compartment, though, getting a hand in to grab a knife was awkward.
 
-Open question: forks are what we use most, so they may belong in the widest compartment, with knives in the middle. Whether that's better also depends on how easy each type is to grab out of its compartment.
+| As designed: three face-up columns (the knife stacks kept falling, so only one layer is shown) | Now: on edge, split by use |
+|---|---|
+| ![The box as designed: knives in the narrowest compartment, forks in the middle and spoons in the widest, in face-up stacks](../photos/designed-layout.jpg) | ![The box with forks and spoons on edge in two rows and knives loosely packed](../photos/final-layout.jpg) |
+
+| | Columns (as designed) | On edge, split by use | Change |
+|---|---|---|---|
+| Spoons | 36 (widest) | 48 (narrowest) | +33% |
+| Forks | 36 (middle) | 56 (widest) | +56% |
+| Knives | 48 (narrowest) | 80 (middle) | +67% |
+| **Total** | **120** | **184** | **+53%** |
+
+Each type also changed compartment, so the per-type change mixes the new packing with the new compartment size. The total is the fairer comparison.
+
+The new layout has trade-offs. Three neat columns look nicer, so it's function over looks. It may also be less hygienic. To pack in less height, the layers alternate: under the top layer, the pieces lie with their heads at the opposite end. So fingers reaching for a spoon in the top layer, for example, can touch the heads of the spoons below it. We don't mind much, since most of the people who use it are family.
+
+This split suits how we use it; other layouts are worth trying. Knives could also go in the narrowest compartment and spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
+
+**A second one.** My brother had been looking for the same thing, so I printed one for him too, in different colours.
+
+![My brother's box, in orange, yellow and pale green, with black and clear cutlery](../photos/brother-box.jpg)
 
 **No lid, so far.** The rim has everything a clear 2 mm lid needs, but the food-safe sheets I found were expensive or not good enough, and we haven't missed a lid. If you know a good source, please [open an issue](../README.md#feedback).
 
@@ -171,13 +220,13 @@ Open question: forks are what we use most, so they may belong in the widest comp
 - **Printer variance is part of the design.** Clearances that worked on one print failed on the next. Coupons narrow the range; a Dremel and glue close the gap.
 - **Change one variable at a time.** Freezing the socket and testing only the male side is what finally made progress on the joint.
 - **Measure the full range, not one sample.** One long knife from another brand was enough to miss.
-- **Use reveals what planning can't.** The layout that works (nested stacks), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
+- **Use reveals what planning can't, so test the use early.** The layout that works (on edge, like the packaging), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
 - **Plain Claude got a working design,** with a lot of human rendering, printing and judging in the loop. It couldn't run OpenSCAD or touch the prints: I rendered, printed and photographed, and it worked from my screenshots and its own diagrams.
 
 ## Next version
 
 - **Try text-to-CAD and other CAD tools for language models,** and compare against this plain-chat baseline: how many rounds, how many test prints, and how good the result is.
-- **Design for stacks from the start:** size the compartments for nested cutlery and for how often each type is used, and check how easy each is to grab.
+- **Design for packing on edge from the start:** size the compartments for nested cutlery and for how often each type is used, and check how easy each is to grab.
 - **Measure several brands,** including the longest knife likely to end up in the box.
 - **Design the joints for glue,** or for a looser fit that tolerates print-to-print variation, rather than relying on a precise friction fit.
 - **A lid:** find an affordable food-safe sheet, or design a printable one.
