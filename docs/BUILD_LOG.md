@@ -130,11 +130,11 @@ The approach that worked was to stop changing both sides at once. The female soc
 |---|---|
 | ![Four coupons marked with one to four dots](../photos/process/IMG_8089.jpg) | ![A coupon being slid into the socket of a printed piece](../photos/process/IMG_8090.jpg) |
 
-Then two full-height tongues with the real top cap checked the fit over the whole 55 mm:
+Then two full-height tongues with the real top cap checked the fit over the whole 55 mm, one at the standard depth (1 dot) and one 1 mm deeper (2 dots):
 
 <p align="center"><img src="../photos/process/IMG_8099.jpg" alt="Two full-height test tongues" width="360"></p>
 
-The final model (v25, June 24) uses 0.15 mm per side. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
+The final model (v25, June 24) uses 0.15 mm per side, at the standard tongue depth, the same as the 1-dot tongue. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
 
 The same round of prints showed that every flat base joint still trapped support material, so v25 also turned all of them into 45° wedges:
 
@@ -147,7 +147,17 @@ The same round of prints showed that every flat base joint still trapped support
 
 ## Printing the pieces (late June)
 
-I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the printer's fine setting, 0.12 mm layers, so the rim chamfer would come out more accurately. I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember). From memory, each piece took about 6–8 hours, depending on its size.
+I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the slicer's fine setting, 0.16 mm layers, so the rim chamfer would come out more accurately, with no bed adhesion (no brim or raft) and the default speed (200 mm/s) and nozzle temperature (220 °C). I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember).
+
+| Piece | Print time | Filament |
+|---|---|---|
+| Knife A | 5 h 39 min | 68.4 g |
+| Knife B | 5 h 36 min | 65.2 g |
+| Fork A | 5 h 5 min | 59.4 g |
+| Fork B | 5 h 5 min | 57.0 g |
+| Spoon A | 5 h 18 min | 67.2 g |
+| Spoon B | 5 h 35 min | 64.4 g |
+| **All six** | **32 h 18 min** | **381.6 g** |
 
 The printer is made for kids getting into 3D printing, and the prints weren't perfectly precise or repeatable: the fit varied between prints at the same settings (above), and some surfaces came out rough.
 
@@ -198,7 +208,9 @@ The new layout has trade-offs. Three neat columns look nicer, so it's function o
 
 This split suits how we use it; other layouts are worth trying. Knives could also go in the narrowest compartment and spoons in the middle, where far more spoons would fit. I didn't, because reaching into the narrowest compartment for knives lying almost flat was awkward. And whichever type you use most, forks or knives, can have the widest compartment.
 
-**A second one.** My brother had been looking for the same thing, so I printed one for him too.
+**A second one.** My brother had been looking for the same thing, so I printed one for him too, in different colours.
+
+![My brother's box, in orange, yellow and pale green, with black and clear cutlery](../photos/brother-box.jpg)
 
 **No lid, so far.** The rim has everything a clear 2 mm lid needs, but the food-safe sheets I found were expensive or not good enough, and we haven't missed a lid. If you know a good source, please [open an issue](../README.md#feedback).
 
