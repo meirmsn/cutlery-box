@@ -66,7 +66,7 @@ The Python script couldn't keep the rim's chamfer (the small bevel along the top
 ![The zero-thickness face before and after the fix](img/2026-06-21_zero-thickness-flap.png)
 *Left: the paper-thin face, in red. Right: gone after moving the cut 0.02 mm.*
 
-**Straight edges on top.** In the first versions the dovetail ran all the way up, so its trapezoid showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it prints without support.
+**Straight edges on top.** In the first versions the dovetail ran all the way up, so its trapezoid showed on the top of the rim. Now the male piece carries a cap the full width of the wall and the female piece has a matching recess, so the rim shows one straight seam and the joint sits underneath. The cap's underside slopes at 50° so it should print without support.
 
 ![Close-up of the same rim seam in four versions: the dovetail outline shows on top in the first, then a single straight line](img/renders/seam-top-progression.png)
 *The same spot on the rim, where two pieces meet over a divider. In the Python version the dovetail's outline shows on top. From v4 the cap hides it under one straight line. In the later versions with lid features (v24 shown) the divider is also lowered, as described below.*
@@ -134,7 +134,7 @@ Then two full-height tongues with the real top cap checked the fit over the whol
 
 <p align="center"><img src="../photos/process/IMG_8099.jpg" alt="Two full-height test tongues" width="360"></p>
 
-The final model (v25, June 24) uses 0.15 mm per side, at the standard tongue depth, the same as the 1-dot tongue. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
+The model uses the 2-dot coupon's fit (0.15 mm per side), and I think the full-height tongue that fitted was the 1-dot, standard-depth one. The final model (v25, June 24) matches both: in the exported pieces the tongue is 2.70 mm wide at the seam, 3.70 mm at the tip and 5.0 mm deep, the same as those two test pieces. Coupon files: [`stl/test-coupons/`](../stl/test-coupons/). Generators: [`tools/`](../tools/).
 
 The same round of prints showed that every flat base joint still trapped support material, so v25 also turned all of them into 45° wedges:
 
@@ -147,7 +147,7 @@ The same round of prints showed that every flat base joint still trapped support
 
 ## Printing the pieces (late June)
 
-I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the slicer's fine setting, 0.16 mm layers, so the rim chamfer would come out more accurately, with no bed adhesion (no brim or raft) and the default speed (200 mm/s) and nozzle temperature (220 °C). I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember).
+I think all six pieces were printed from the final model, v25. They were printed in iSANMATE PLA+ Rainbow, a colour-change filament (1.75 mm); the gradients on the box come from the filament, not from the design. I used the stock 0.4 mm nozzle and the slicer's fine setting, 0.16 mm layers, so the rim chamfer would come out more accurately, with no bed adhesion (no brim or raft) and the default speed (200 mm/s) and nozzle temperature (220 °C). I think I used the default wall thickness, 2 layers, and 15% infill (maybe 3 and 20%; I don't remember). Support was set to "partial", and the slicer did add a little: a tiny bit under each dovetail tongue, which starts 3 mm above the floor, for the tongue to build on, and, I think on one piece, some under a joint cap. So "no supports" was the aim more than the result.
 
 | Piece | Print time | Filament |
 |---|---|---|

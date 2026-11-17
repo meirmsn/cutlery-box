@@ -17,7 +17,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 ## What it does
 
 - Holds 184 pieces of our usual disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
-- Prints on a small printer with a 120 × 120 × 120 mm build area, with no support material (the throwaway scaffolding printers add under overhangs)
+- Prints on a small printer with a 120 × 120 × 120 mm build area, with little support material (the throwaway scaffolding printers add under overhangs)
 - Assembles into one box with no screws: the joints are hidden inside the walls, leaving only straight seam lines
 - Lets you change the compartment sizes and height in one file to fit other cutlery
 
@@ -25,7 +25,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 
 - **Cut from one solid.** The OpenSCAD model builds the whole box, rim chamfer included, then cuts it apart with dovetail-shaped blocks. The cuts that split the box are the joints, so the chamfer (the small bevel along the top edge) runs unbroken across every seam.
 - **Hidden dovetails behind straight edges.** Vertical sliding dovetails sit inside the 6 mm walls, and a cap covers each joint at the top so the rim shows one straight seam line. Pieces drop in from above.
-- **Printable without supports.** The undersides of the joint caps slope at 50°, the base seams use 45° wedges, and the few remaining overhangs are short enough to print in mid-air.
+- **Designed to print without supports.** The undersides of the joint caps slope at 50°, the base seams use 45° wedges, and the few remaining overhangs are meant to be short enough to print in mid-air. In practice my slicer still added a little support under the dovetail tongues, which start just above the floor.
 - **Tuned on printed coupons, then finished by hand.** The joint fit was dialled in with coupons (small test pieces) at 0.05–0.20 mm of gap on each side of the joint. Fit still varied from print to print at the same settings, so the final assembly needed a Dremel and plastic glue.
 - **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those stacks kept falling over, even standing still. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
 - **Tried and dropped:** a Python generator that wrote meshes directly (it couldn't cut one solid cleanly with another), flat base joints (they trapped support material), and a lid (see Known limitations).
@@ -63,7 +63,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 
 **Print it.** Download the STLs from the [v1.0 release](../../releases/tag/v1.0) (one zip, no cloning), or open any file in [`stl/`](stl/) to preview it in 3D on GitHub.
 1. Print the test coupons in [`stl/test-coupons/`](stl/test-coupons/) and slide each into a printed socket. The model uses the 2-dot fit (0.15 mm gap per side). If another coupon fits your printer better, change `DT_NECK` and `DT_FLARE` in the OpenSCAD file and re-export; leave the socket as it is.
-2. Print each piece flat on its floor, as oriented, with no supports. On our printer each piece took 5 h 5 min to 5 h 39 min and 57–68 g of PLA: 32 h 18 min and 382 g for all six. Turn on elephant's-foot compensation in your slicer (about 0.15–0.20 mm; some slicers write it as a negative number).
+2. Print each piece flat on its floor, as oriented. Your slicer may add a little support under the dovetail tongues, which start 3 mm above the floor, and possibly under a joint cap; mine did with support set to "partial". On our printer each piece took 5 h 5 min to 5 h 39 min and 57–68 g of PLA: 32 h 18 min and 382 g for all six. Turn on elephant's-foot compensation in your slicer (about 0.15–0.20 mm; some slicers write it as a negative number).
 3. Dry-fit first. Build one half by lowering knife, fork and spoon pieces onto each other, build the other half the same way, then lower one half onto the other. Grind or sand any high spots that stop pieces from seating, then glue for a rigid box (I did).
 
 **Change it.** Open [`scad/cutlery_box.scad`](scad/cutlery_box.scad) in [OpenSCAD](https://openscad.org/), edit the parameters at the top, pick a `part`, render with F6 and export to STL. All six at once:
