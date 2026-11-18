@@ -1,8 +1,10 @@
+<a id="readme-top"></a>
+
 <div align="center">
 
 <img src="photos/finished-loaded.jpg" alt="The finished cutlery box" width="560">
 
-# cutlery-box
+# Cutlery Box
 
 **A 3D-printed 3 compartment box for disposable cutlery, designed in OpenSCAD with Claude**
 
@@ -16,6 +18,20 @@ in daily use · 2026-07
 
 </div>
 
+<details>
+<summary>Contents</summary>
+
+- [Approach](#approach)
+- [What it does](#what-it-does)
+- [How it works](#how-it-works)
+- [Build log](#build-log)
+- [Known limitations](#known-limitations)
+- [Run it](#run-it)
+- [Feedback](#feedback)
+- [License](#license)
+
+</details>
+
 A three-compartment box for disposable knives, forks and spoons, designed in OpenSCAD with Claude and printed in six pieces on a small hobby printer.
 
 Disposable cutlery usually lives in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, none of them can be washed, and the organizers I found for real cutlery don't hold enough. The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
@@ -28,12 +44,16 @@ I designed this in June 2026 in plain chat sessions with Claude: no text-to-CAD 
 
 What the process taught: a model that looks right on screen is not yet a part that prints. Every real problem showed up on a printed test piece, and some only showed up once the box was in daily use.
 
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
+
 ## What it does
 
 - Holds 184 pieces of our usual disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
 - Prints on a small printer with a 120 × 120 × 120 mm build area, with little support material (the throwaway scaffolding printers add under overhangs)
 - Assembles into one box with no screws: the joints are hidden inside the walls, leaving only straight seam lines
 - Lets you change the compartment sizes and height in one file to fit other cutlery
+
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
 
 ## How it works
 
@@ -44,7 +64,12 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **Sized from real cutlery, then re-used differently.** Compartments were sized for three face-up columns of each type, from measured cutlery. Those stacks kept falling over, even standing still. Packing the cutlery on edge the way it comes packaged holds 184 pieces instead of 120 and stays put; the most-used type now gets the widest compartment.
 - **Tried and dropped:** a Python generator that wrote meshes directly (it couldn't cut one solid cleanly with another), flat base joints (they trapped support material), and a lid (see Known limitations).
 
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
+
 ## Build log
+
+<details>
+<summary>Show all 8 entries</summary>
 
 - **2026-06-19:** First model: three compartments, split into a 3 × 2 grid of pieces to fit the printer.
 - **2026-06-20:** First test prints. Corners came out hollow and the compartments were too narrow. Re-measured and resized.
@@ -54,6 +79,8 @@ What the process taught: a model that looks right on screen is not yet a part th
 - **2026-06-24:** Final model (v25). Six STLs exported.
 - **By 2026-06-30:** All six pieces printed, high spots Dremelled down, box assembled and glued.
 - **2026-07-05:** In daily use. Since then the cutlery has moved from face-up columns, which kept falling over, to on edge like the packaging: 184 pieces instead of 120 (+53%).
+
+</details>
 
 ![Renders of the model on June 20, 21, 22 and 24: the overall shape barely changes](docs/img/renders/progression.png)
 ![Close-up of one rim seam in the same four versions](docs/img/renders/seam-top-progression.png)
@@ -65,6 +92,8 @@ What the process taught: a model that looks right on screen is not yet a part th
 
 **[Read the full build log →](docs/BUILD_LOG.md)**: the planning, every test print, what broke, what it taught, and what I'd change next time, with photos and renders.
 
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
+
 ## Known limitations
 
 - The joint fit depends on the printer and varied between prints even at the same settings. Expect to print the test coupons first, and possibly to sand or glue.
@@ -72,6 +101,8 @@ What the process taught: a model that looks right on screen is not yet a part th
 - There's no lid. The rim has a hinge groove, a support rail and clips for a 2 mm clear sheet (196.5 × 290 mm), but I didn't find a food-safe sheet with the right size and finish at a reasonable price and so far haven't needed one. [Suggestions welcome](#feedback).
 - The interior is 196 mm long. Our usual disposable cutlery fits, but a longer knife from another brand didn't.
 - Compartment widths were chosen for three columns per compartment, not for packing on edge. The split that works for us is in the build log; yours may differ.
+
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
 
 ## Run it
 
@@ -90,12 +121,18 @@ done
 
 The coupon generators and the renderer used for the images are in [`tools/`](tools/). Everything else from the design process (25 model versions, notes, renders, screenshots) is in [`archive/`](archive/).
 
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
+
 ## Feedback
 
 Suggestions and critiques welcome — open an issue or a discussion.
 
 In particular: if you know an affordable, food-safe clear sheet with a good surface finish that can be cut to about 196.5 × 290 × 2 mm with rounded edges, or a good printable lid design, please open an issue or send me a message.
 
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
+
 ## License
 
 The design files (OpenSCAD source, STLs, photos, renders and docs) are licensed under [CC BY 4.0](LICENSE): you can print, remix and share them, including commercially, as long as you credit Meir Messingher Lang.
+
+<p align="right"><small><a href="#readme-top">back to top</a></small></p>
