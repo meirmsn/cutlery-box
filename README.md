@@ -14,8 +14,6 @@
 ![Last commit](https://img.shields.io/github/last-commit/meirmsn/cutlery-box)
 [![License: CC BY 4.0](https://img.shields.io/badge/license-CC_BY_4.0-blue)](LICENSE)
 
-in daily use · 2026-07
-
 </div>
 
 <details>
