@@ -131,6 +131,6 @@ In particular: if you know an affordable, food-safe clear sheet with a good surf
 
 ## License
 
-The design files (OpenSCAD source, STLs, photos, renders and docs) are licensed under [CC BY 4.0](LICENSE): you can print, remix and share them, including commercially, as long as you credit Meir Messingher Lang.
+The design files (OpenSCAD source, STLs, photos, renders and docs) are licensed under [CC BY 4.0](LICENSE): you can print, remix and share them, including commercially, as long as you credit [@meirmsn](https://github.com/meirmsn).
 
 <p align="right"><small><a href="#readme-top">back to top</a></small></p>
