@@ -10,9 +10,9 @@ How a box for disposable cutlery went from a chat to a six-piece print in daily 
 
 ## Why
 
-We use disposable cutlery from time to time, and it never had a good home. It comes in cardboard boxes that fall apart, or thin plastic boxes that crack into sharp pieces, and neither can be washed. Over the years I looked on Amazon and found organizers for real cutlery, but they hold too few pieces, don't lock or open too easily, and aren't made for a pile of disposable cutlery. My own fixes, a box with dividers made from plastic offcuts and tape, were flimsy and not very hygienic.
+We use disposable cutlery from time to time, and it never had a good home. It comes in cardboard boxes that fall apart, or thin plastic boxes that crack into sharp pieces: disposable themselves, hard to keep sanitized, and not made to last. Over the years I looked on Amazon and found organizers for real cutlery, but they hold too few pieces, don't lock or open too easily, and aren't made for a pile of disposable cutlery. My own fixes, a box with dividers made from plastic offcuts and tape, were flimsy and not very hygienic.
 
-I always thought this should exist, but never had the time to design it in CAD. My son has a small 3D printer, and in June 2026 I wanted to see how fast I could design and iterate on one with plain Claude, used in ordinary chat: no text-to-CAD tools, no CAD plugins and no special workflow. At the time I didn't know text-to-CAD tools existed. It turned out to be fast, fun, and it solved the problem.
+I always thought this should exist, but never had the time to design it in CAD. When my son got a kids' 3D printer, I used its downtime to try it: in June 2026 I wanted to see how fast I could design and iterate on one with plain Claude, used in ordinary chat: no text-to-CAD tools, no CAD plugins and no special workflow. At the time I didn't know text-to-CAD tools existed. It turned out to be fast, fun, and it solved the problem.
 
 ## The plan (June 19)
 
@@ -120,7 +120,7 @@ Then came the first trial pieces, with four problems. The annotations are from t
 
 ## Fitting the dovetails (June 23–24)
 
-This took the most rounds. The first joints slid in but wobbled and pulled back out. Making them tighter fixed one print and jammed the next: sometimes there was good friction and sometimes none, from prints that should have been identical.
+This took the most rounds. The first joints slid in but wobbled and pulled back out. Making them tighter fixed one print and jammed the next: sometimes there was good friction and sometimes none, from prints that should have been identical. On one piece, two dovetails fit differently, one tight and one loose. I checked the code with Claude and they were the same, so the difference came from the printer. That turned the question into: is there a clearance that works despite the printer's variation?
 
 <p align="center"><img src="../photos/process/IMG_8087.jpg" alt="A test joint between two short pieces" width="360"></p>
 
@@ -169,7 +169,7 @@ Still, with a little Dremel work and glue, it made a box we use regularly and th
 
 With all six pieces printed, they still didn't sit flush. High spots on the mating faces bumped into each other and kept the pieces from seating. A Dremel took those down.
 
-Even seated, the friction fit wasn't enough for a box that gets picked up and moved. Plastic glue on the joints made it one rigid unit that doesn't wobble at rest.
+Even seated, the friction fit wasn't enough for a box that gets picked up and moved. Plastic glue on the joints made it one rigid unit that doesn't wobble at rest. The dovetails themselves were glued, not sanded.
 
 ![Two trial pieces side by side](../photos/process/IMG_8103.jpg)
 
@@ -177,7 +177,7 @@ Even seated, the friction fit wasn't enough for a box that gets picked up and mo
 
 ## Living with it (July onward)
 
-**A knife that didn't fit.** Our usual brand fits well within the 196 mm interior. But one particularly long knife from another brand touched both ends. The sizing came from our own measurements plus published sizes, and the outlier wasn't covered.
+**A knife that barely fits.** Our usual brand fits well within the 196 mm interior. But one particularly long knife from another brand touched both ends. The sizing came from our own measurements plus published sizes, and the outlier wasn't covered. In the widest compartment it can turn slightly, and angled like that it fits.
 
 <p align="center"><img src="../photos/knife-too-long.jpg" alt="A longer knife touching both ends of a compartment" width="360"></p>
 
@@ -221,7 +221,7 @@ This split suits how we use it; other layouts are worth trying. Knives could als
 - **Change one variable at a time.** Freezing the socket and testing only the male side is what finally made progress on the joint.
 - **Measure the full range, not one sample.** One long knife from another brand was enough to miss.
 - **Use reveals what planning can't, so test the use early.** The layout that works (on edge, like the packaging), the capacity, and which compartment should hold which type only became clear once the box was on the counter.
-- **Plain Claude got a working design,** with a lot of human rendering, printing and judging in the loop. It couldn't run OpenSCAD or touch the prints: I rendered, printed and photographed, and it worked from my screenshots and its own diagrams.
+- **Plain Claude got a working design,** with a lot of human rendering, printing and judging in the loop. I had a clear picture of what I wanted and directed it rather than asking it for ideas. It couldn't run OpenSCAD or touch the prints: I rendered the parts, checked them in the OpenSCAD viewer, sent back screenshots (sometimes with the problem circled in red), printed and photographed, and it worked from those and its own diagrams. Without it I'd have had to relearn a CAD program I hadn't used in years; with it, each design change took minutes.
 
 ## Next version
 

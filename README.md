@@ -8,7 +8,7 @@
 
 **A 3D-printed 3 compartment box for disposable cutlery, designed in OpenSCAD with Claude**
 
-[What it does](#what-it-does) · [How it works](#how-it-works) · [Build log](#build-log)
+[What it does](#what-it-does) · [How it was made](#how-it-was-made) · [Build log](#build-log)
 
 ![Status: shipped](https://img.shields.io/badge/status-shipped-brightgreen)
 ![Last commit](https://img.shields.io/github/last-commit/meirmsn/cutlery-box)
@@ -21,7 +21,7 @@
 
 - [Approach](#approach)
 - [What it does](#what-it-does)
-- [How it works](#how-it-works)
+- [How it was made](#how-it-was-made)
 - [Build log](#build-log)
 - [Known limitations](#known-limitations)
 - [Run it](#run-it)
@@ -32,13 +32,13 @@
 
 A three-compartment box for disposable knives, forks and spoons, designed in OpenSCAD with Claude and printed in six pieces on a small hobby printer.
 
-Disposable cutlery usually lives in cardboard boxes that fall apart or plastic ones that crack into sharp pieces, none of them can be washed, and the organizers I found for real cutlery don't hold enough. The box is 303 × 208 × 58 mm, too big for the 120 mm printer it was made on, so it prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with straight seams and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
+Disposable cutlery usually comes in cardboard or thin plastic boxes that are disposable themselves: hard to keep sanitized, and not made to last. The organizers I found are designed for real cutlery: they don't hold enough, and none have this flat, side-by-side layout. When my son got a kids' 3D printer, I used its downtime to try a project that had been on my mind for a while. The box had to hold all three types side by side, so it came out far bigger than the printer's 120 mm build area (303 × 208 × 58 mm). It prints as six pieces that slide together on dovetails hidden inside the walls. From outside it reads as one box with nearly straight seams (you can still see and feel them) and a chamfered rim that's comfortable to grab. Six days of design, several rounds of test prints, a Dremel and some glue got it from idea to the kitchen counter, where it's been in use since July 2026. I printed a second one for my brother, who'd been looking for one.
 
 ![Left: a render of the six printed pieces, pulled apart, roughly in their print colours. Right: the finished box on the counter, with spoons and forks on edge in two rows and knives loosely packed in the middle](docs/social-preview.png)
 
 ## Approach
 
-I designed this in June 2026 in plain chat sessions with Claude: no text-to-CAD tools, no CAD plugins, no custom workflow. It was a test of how far raw Claude gets on a physical design. It is not the detailed method used in the [devshop](https://github.com/meirmsn/abra-kadabra). Claude wrote the geometry, first as a Python script that wrote meshes directly and then as a parametric OpenSCAD model, and checked the meshes with its own scripts. It couldn't run OpenSCAD itself, so I rendered the parts, printed them on my son's printer (an AOSEED X-MAKER JOY AI+), photographed what went wrong, and made the design calls. Human in the loop: @meirmsn; robot hands for packaging this repo: @meirmsn-agent.
+I designed this in June 2026 in plain chat sessions with Claude: no text-to-CAD tools, no CAD plugins, no custom workflow. It was a test of how far raw Claude gets on a physical design. It is not the detailed method used in the [devshop](https://github.com/meirmsn/abra-kadabra). I had a clear picture of the box I wanted, so I wasn't asking Claude for ideas: I made the design calls and directed it. Claude wrote the geometry, first as a Python script that wrote meshes directly and then as a parametric OpenSCAD model, and checked the meshes with its own scripts. It couldn't run OpenSCAD itself, so I rendered the parts, checked them in the OpenSCAD viewer and sent screenshots back with feedback, sometimes with the problem circled in red, until the model looked the way I'd pictured it. Then I printed the parts on my son's printer (an AOSEED X-MAKER JOY AI+), photographed what went wrong, and went back to Claude for the next round, until it worked. Without Claude I'd have had to get back up to speed on a CAD program I hadn't used in years, which would have taken more time than I had; with it, I could iterate in minutes.
 
 What the process taught: a model that looks right on screen is not yet a part that prints. Every real problem showed up on a printed test piece, and some only showed up once the box was in daily use.
 
@@ -47,13 +47,14 @@ What the process taught: a model that looks right on screen is not yet a part th
 ## What it does
 
 - Holds 184 pieces of our usual disposable cutlery (up to about 190 mm long): 48 spoons, 56 forks and 80 knives, one type per compartment
-- Prints on a small printer with a 120 × 120 × 120 mm build area, with little support material (the throwaway scaffolding printers add under overhangs)
-- Assembles into one box with no screws: the joints are hidden inside the walls, leaving only straight seam lines
-- Lets you change the compartment sizes and height in one file to fit other cutlery
+- Assembles into one box with no screws: the joints are hidden inside the walls, leaving only nearly straight seam lines
+- Lets you choose how to organize it. The three compartments have different widths and the cutlery has different shapes (a spoon has a big head, a knife is long and slender), so you can decide which type goes where, give the widest compartment to the type you use most, and stack them face up in columns (neat but tippy), pack them on edge like the packaging, or just drop them in loose
+- Can be resized: the compartment widths and height are parameters in one file, so in theory you can fit other cutlery or split the width differently (I haven't tried)
+- Can be printed on a printer as small as 120 × 120 × 120 mm, with little support material (the throwaway scaffolding printers add under overhangs)
 
 <p align="right"><small><a href="#readme-top">back to top</a></small></p>
 
-## How it works
+## How it was made
 
 - **Cut from one solid.** The OpenSCAD model builds the whole box, rim chamfer included, then cuts it apart with dovetail-shaped blocks. The cuts that split the box are the joints, so the chamfer (the small bevel along the top edge) runs unbroken across every seam.
 - **Hidden dovetails behind straight edges.** Vertical sliding dovetails sit inside the 6 mm walls, and a cap covers each joint at the top so the rim shows one straight seam line. Pieces drop in from above.
@@ -80,13 +81,22 @@ What the process taught: a model that looks right on screen is not yet a part th
 
 </details>
 
-![Renders of the model on June 20, 21, 22 and 24: the overall shape barely changes](docs/img/renders/progression.png)
-![Close-up of one rim seam in the same four versions](docs/img/renders/seam-top-progression.png)
-*Six days of versions, rendered from the saved files. The overall shape barely changed; the work happened at the joints and the rim. Close up (second row), the dovetail's outline on top of the rim gives way to a cap and one straight seam line.*
+**Whole view**
 
-| Joint test coupons, one to four dots | A longer knife from another brand: it touches both end walls |
+![Renders of the model on June 20, 21, 22 and 24, each with a one-line note on what changed](docs/img/renders/progression.png)
+*Six days of versions, rendered from the saved files. The overall shape barely changed; the work happened at the joints and the rim.*
+
+**Detail view**
+
+![Four close-ups: the rim seam in the Python version and in v4, the hinge corner of v25 with an inset of the groove, and the clip wall of v25](docs/img/renders/details.png)
+*Rim seam: in the Python version the dovetail reaches the top of the rim; the two dark slits are the gaps along its slanted sides, and the chamfer is cut through. From v4 a cap covers it, leaving one straight line. Hinge corner: the support rail along the short wall is where the lid would rest. The hinge groove in the long wall is a half-round channel behind an angled opening (inset, seen where the piece is cut), meant to let the lid swing up and also lift right out. Clip wall: the divider is lowered and flat, without the chamfer, so its top is a column for the lid to rest on. The finger notch lets a thumb reach under the lid's edge, and the two small clips beside it are meant to hold the lid shut until it's lifted there.*
+
+**Challenges**
+
+| Joint fit | A longer knife |
 |---|---|
 | ![Four dovetail test coupons marked with one to four dots](photos/process/IMG_8089.jpg) | ![A long knife lying end to end in a compartment, touching both walls](photos/knife-too-long.jpg) |
+| The first dovetails slid in too easily, and tighter ones jammed. On one piece, two joints that were identical in the model fit differently, so the variation came from the printer. Claude and I printed four test coupons at different clearances to find a size that works despite it. The model uses the 2-dot fit; glue, not sanding, did the rest. | A longer knife from another brand touches both end walls of a compartment. Angled slightly in the widest compartment, it fits. |
 
 **[Read the full build log →](docs/BUILD_LOG.md)**: the planning, every test print, what broke, what it taught, and what I'd change next time, with photos and renders.
 
@@ -97,7 +107,7 @@ What the process taught: a model that looks right on screen is not yet a part th
 - The joint fit depends on the printer and varied between prints even at the same settings. Expect to print the test coupons first, and possibly to sand or glue.
 - The pieces use up to 118.5 mm of a 120 mm print area. Check your printer's real usable area, and note that widening a compartment will push its pieces past it.
 - There's no lid. The rim has a hinge groove, a support rail and clips for a 2 mm clear sheet (196.5 × 290 mm), but I didn't find a food-safe sheet with the right size and finish at a reasonable price and so far haven't needed one. [Suggestions welcome](#feedback).
-- The interior is 196 mm long. Our usual disposable cutlery fits, but a longer knife from another brand didn't.
+- The interior is 196 mm long. Our usual disposable cutlery fits, but a longer knife from another brand fits only angled in the widest compartment.
 - Compartment widths were chosen for three columns per compartment, not for packing on edge. The split that works for us is in the build log; yours may differ.
 
 <p align="right"><small><a href="#readme-top">back to top</a></small></p>
