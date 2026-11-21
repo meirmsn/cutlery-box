@@ -56,6 +56,13 @@ Public on GitHub with description and topics set. Release [`v1.0`](https://githu
 
 Things only the owner can provide (every open question for him goes here, so none is lost between sessions):
 - **Optional:** a Printables or MakerWorld listing to link from the README.
+- **Hero photo:** the README opens with `photos/finished-loaded.jpg` (added in PR 3), which shows the abandoned intermediate face-up layout, and then the social preview. Keep it, swap in `photos/final-layout.jpg`, or drop it so the social preview comes first?
+- **Dremel:** the dovetails were glued, not sanded. Where did the Dremel go: the base edges, the corners, the dovetails' outer faces? The build log says "high spots on the mating faces".
+- **Warping:** the trial-print notes call the base-corner problem elephant's foot, "not warp". Did any piece really warp (`photos/process/IMG_8082.jpg`, the README's "warped corners")?
+- **Assembly order:** the model is built for B half first (spoon, fork, knife), then the A half lowered onto it; the README now says so. Is that what he did?
+- **Fine layers:** did he choose 0.16 mm "so the rim chamfer would come out more accurately", as the build log says?
+- **Spoons in the middle:** "far more spoons would fit" there: counted, or should it be "more"?
+- **Long knife:** it fits angled in the widest compartment, which holds the forks. Does it live among the forks?
 
 Repo admin:
 - **Social preview:** upload `docs/social-preview.png` in the GitHub settings (Settings → General → Social preview).
